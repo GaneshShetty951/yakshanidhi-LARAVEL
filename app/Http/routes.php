@@ -12,7 +12,14 @@
 */
 
 Route::get('/', function () {
+	//Auth::loginUsingId(1);
     return view('welcome');
+});
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::resource('mela/', 'Api\MelaController@show');
+    Route::resource('/mela/{mela_name}','Api\MelaController@index');
+    Route::resource('artist/', 'Api\ArtistController@show');
 });
 
 Route::auth();

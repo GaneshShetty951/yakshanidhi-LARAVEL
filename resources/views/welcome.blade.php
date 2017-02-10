@@ -10,6 +10,9 @@
                 <div class="panel-body">
                     Your Application's Landing Page.
                 </div>
+                @can('edit_show')
+                    <a href='#'>Edit the Show</a>
+                @endcan
             </div>
         </div>
     </div>
