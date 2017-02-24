@@ -11,6 +11,6 @@ class ArtistController extends Controller
 {
     public function show()
     {
-    	return Artist::all();
+    	return response()->json(["posts"=>Artist::all()]);
     }
 }

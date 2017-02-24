@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('auth.auth_template')
 
 @section('content')
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -78,5 +78,70 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+</div> -->
+
+
+<!-- Register Page
+    ==========================================-->
+
+    <form class="form-signin" method="POST" action="{{ url('/register') }}">
+        {{ csrf_field() }}
+
+        <div class="card-block">
+
+            <!--Header-->
+            <div class="text-center">
+                <h3 class="login-title">Yakshanidhi </h3>
+            </div>
+            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+
+            <!--Body-->
+            <div class="md-form {{ $errors->has('name') ? ' has-error' : '' }}">
+                <i class="fa fa-user prefix"></i>
+                <input type="text" id="form3" name="name" class="form-control">
+                <label for="form3">Your name</label>
+                @if ($errors->has('name'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                @endif
+            </div>
+
+            <div class="md-form {{ $errors->has('email') ? ' has-error' : '' }}">
+                <i class="fa fa-envelope prefix"></i>
+                <input type="text" id="form2" name="email" class="form-control">
+                <label for="form2">Your email</label>
+                @if ($errors->has('email'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
+            </div>
+
+            <div class="md-form {{ $errors->has('password') ? ' has-error' : '' }}">
+                <i class="fa fa-lock prefix"></i>
+                <input type="password" id="form32"name="password" class="form-control">
+                <label for="form34">Your Password</label>
+                @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
+            </div>
+
+            <div class="md-form {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                <i class="fa fa-pencil prefix"></i>
+                <input type="password" id="form8" name="password_confirmation" class="form-control"></input>
+                <label for="form8">Re-write Password</label>
+                @if ($errors->has('password_confirmation'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                </span>
+                @endif
+            </div>
+
+            <button type="submit" class="btn btn-block btn-deep-purple" align="center">Sign Up</button>
+        </center>
+    </form>
+
+    @endsection

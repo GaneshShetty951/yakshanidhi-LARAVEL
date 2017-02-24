@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Auth;
+use App\Mela;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin'))
+        {
+            $mela=Mela::all();
+            return view('admin.mela_list',compact('mela'));
+        }
         return view('home');
     }
 }
