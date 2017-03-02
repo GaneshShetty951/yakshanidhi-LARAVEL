@@ -15,7 +15,7 @@ class CreateYakshaganaTable extends Migration
         Schema::create('melas',function(Blueprint $table){
             $table->increments('mela_id');
             $table->string('mela_name')->unique();
-            $table->binary('mela_pic')->nullable();
+            $table->String('mela_pic')->nullable();
             $table->string('mela_email')->nullable();
             $table->string('contact',10);
             $table->string('village');
@@ -36,7 +36,7 @@ class CreateYakshaganaTable extends Migration
             $table->integer('mela_id')->unsigned();
             $table->string('artist_first_name');
             $table->string('artist_second_name');
-            $table->binary('artist_pic');
+            $table->string('artist_pic');
             $table->string('artist_type');
             $table->string('artist_place');
             $table->timestamps();
@@ -58,7 +58,7 @@ class CreateYakshaganaTable extends Migration
             $table->string('village');
             $table->string('taluk');
             $table->string('district');
-            $table->string('PIN Conde',6);
+            $table->string('PINCODE',6);
             $table->timestamps();
 
             $table->foreign('mela_id')

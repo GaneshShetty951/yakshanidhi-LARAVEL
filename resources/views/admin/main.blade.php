@@ -46,9 +46,9 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Mela <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    @foreach($mela as $value)
-                      <li><a href="{{ bcrypt($value->mela_id)}}">{{$value->mela_name}}</a></li>
-                     @endforeach
+                      <li><a href="{{ url('/mela_add')}}">Add</a></li>
+                      <li><a href="{{ url('/mela_update')}}">Modify</a></li>
+                      <li><a href="{{ url('/mela_list')}}">List</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Prasangha <!-- <span class="fa fa-chevron-down"> --></span></a>
@@ -187,6 +187,7 @@
           </div>
         </div>
         <!-- /top navigation -->
+        
 
         @yield('admin')
 
