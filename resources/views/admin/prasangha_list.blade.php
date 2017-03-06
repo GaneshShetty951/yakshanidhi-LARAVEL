@@ -58,7 +58,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-              <a class="">List of Mela</a>
+              <a class="">List of Prasangha</a>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -87,56 +87,31 @@
                 <div class="container-fluid">
                   <div class="row x_title" style="background-color:#AAAAAA;"">
                     <STRONG>
-                    <div class="col-sm-2" style="background-color:#AAAAAA;font-style:bold;">
-                    <p>Mela Name</p>
+                    <div class="col-sm-3" style="background-color:#AAAAAA;font-style:bold;">
+                    <p>Prasangha Name</p>
                     </div>
                     <div class="col-sm-3" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>Mela Email</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                    <p>Contact</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>Village</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>Taluk</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>District</p>
+                      <p>Prasangha Author</p>
                     </div>
                     <div class="col-sm-2" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>PINCODE</p>
+                    <p>Written Year</p>
                     </div>
                     </STRONG>
 
                   </div>
-                  @foreach($mela as $melavalue)
+                  @foreach($prasangha as $value)
                   <div class="row x_title">
                     <STRONG>
-                    <div class="col-sm-2" >
-                    <p>{{$melavalue->mela_name}}</p>
+                    <div class="col-sm-3" >
+                    <p>{{ $value->prasangha_name }}</p>
                     </div>
                     <div class="col-sm-3" >
-                      <p>{{$melavalue->mela_email}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                    <p>{{$melavalue->contact}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                      <p>{{$melavalue->village}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                      <p>{{$melavalue->taluk}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                      <p>{{$melavalue->district}}</p>
+                      <p>{{ $value->prasangha_author }}</p>
                     </div>
                     <div class="col-sm-2" >
-                      <p>{{$melavalue->PINCODE}}</p>
+                    <p>{{ $value->prasangha_year }}</p>
                     </div>
                     </STRONG>
-
                   </div>
                   @endforeach
                 </div>

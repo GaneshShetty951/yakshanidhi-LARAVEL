@@ -18,10 +18,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- page content -->
-    <!-- <<div class="right_col" role="main">
+    <!-- <div class="right_col" role="main"> -->
     <!-- top tiles -->
       <!-- <div class="title_right">
         <a class="btn btn-success btn-lg"><i class="fa fa-plus"></i>Add</a>
@@ -33,6 +33,7 @@
 </div> --> 
 
 <!-- page content -->
+
 <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
@@ -58,7 +59,8 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-              <a class="">List of Mela</a>
+            <h2><a class="text-info"></i>Add new Prasangha</a>
+            </h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -80,66 +82,45 @@
 
 
             <!-- Smart Wizard -->
-            <!-- <p>This is a basic form wizard example that inherits the colors from the selected scheme.</p> -->
             <div id="wizard" class="form_wizard wizard_horizontal">
               <div id="step-1">
-                @include('messages._showmessage')
-                <div class="container-fluid">
-                  <div class="row x_title" style="background-color:#AAAAAA;"">
-                    <STRONG>
-                    <div class="col-sm-2" style="background-color:#AAAAAA;font-style:bold;">
-                    <p>Mela Name</p>
-                    </div>
-                    <div class="col-sm-3" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>Mela Email</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                    <p>Contact</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>Village</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>Taluk</p>
-                    </div>
-                    <div class="col-sm-1" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>District</p>
-                    </div>
-                    <div class="col-sm-2" style="background-color:#AAAAAA;font-style: bold;">
-                      <p>PINCODE</p>
-                    </div>
-                    </STRONG>
+                <form class="form-horizontal form-label-left" method="post"  action="{{ url('/prasangha_add') }}" enctype="multipart/form-data" >
+                  {{ csrf_field() }}
 
-                  </div>
-                  @foreach($mela as $melavalue)
-                  <div class="row x_title">
-                    <STRONG>
-                    <div class="col-sm-2" >
-                    <p>{{$melavalue->mela_name}}</p>
-                    </div>
-                    <div class="col-sm-3" >
-                      <p>{{$melavalue->mela_email}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                    <p>{{$melavalue->contact}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                      <p>{{$melavalue->village}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                      <p>{{$melavalue->taluk}}</p>
-                    </div>
-                    <div class="col-sm-1" >
-                      <p>{{$melavalue->district}}</p>
-                    </div>
-                    <div class="col-sm-2" >
-                      <p>{{$melavalue->PINCODE}}</p>
-                    </div>
-                    </STRONG>
+                  @include('messages._showmessage')
 
+                  <div class="form-group" >
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Prasangha Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="prasangha_name" name="prasangha_name" required="required" active class="form-control col-md-7 col-xs-12">
+                    </div>
                   </div>
-                  @endforeach
-                </div>
+                
+                  <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Prasangha Author<span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input id="prasangha_author" class="form-control col-md-7 col-xs-12" type="text" name="prasangha_author" required >
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Written Year<span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input id="prasangha_year" name="prasangha_year" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input  class="btn btn-default btn-primary" required="required" type="submit" value="Add">
+                    </div>
+                  </div>
+
+
+                </form>
+
               </div>
 
             </div>

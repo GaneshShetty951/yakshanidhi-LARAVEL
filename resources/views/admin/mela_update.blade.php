@@ -85,16 +85,27 @@
                       {{csrf_field()}}
                         <input type="text" name="search_key" required placeholder="mela,email">
                         <input type="submit" name="submit" value="search">
+
+
                       </form>
                     </div>
                   </div>
-
+                    @include('messages._showmessage')
                     @if($mela)
                     <!-- Smart Wizard -->
                     @foreach($mela as $mela_value)
                     <div id="wizard" class="form_wizard wizard_horizontal x_title">
                       <div id="step-1">
-                        <form class="form-horizontal form-label-left"  action="{{ url('/mela_save') }}">
+
+                        <form class="form-horizontal form-label-left"  method="post" enctype="multipart/form-data" action="{{ url('/mela_update') }}" >
+                        {{ csrf_field() }}
+                          <div class="form-group" >
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mela Id<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" id="mela_id" name="mela_id" required="required" readonly active class="form-control col-md-7 col-xs-12"  value="{{ $mela_value->mela_id }}">
+                            </div>
+                          </div>
 
                           <div class="form-group" >
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mela Name <span class="required">*</span>
@@ -103,17 +114,21 @@
                               <input type="text" id="mela_name" name="mela_name" required="required" active class="form-control col-md-7 col-xs-12"  value="{{ $mela_value->mela_name }}">
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mela Picture <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="file" id="mela_pic" name="mela_pic" required="required" class="form-control col-md-7 col-xs-12" value="{{ $mela_value->mela_pic }}">
-                            </div>
+                          <div class="form-group text-center" >
+                            <img src="/mela_images/{{ $mela_value->mela_pic }}" style="width: 100px;height:100px;">
                           </div>
                           <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Mela Email</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mela Picture
+                            </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="mela_email" class="form-control col-md-7 col-xs-12" type="email" name="middle-name" value="{{ $mela_value->mela_email }}">
+                              <input type="file" id="mela_pic" name="mela_pic"  class="form-control col-md-7 col-xs-12" >
+                            </div>
+
+                          </div>
+                          <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Mela Email<span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input id="mela_email" class="form-control col-md-7 col-xs-12" type="email" name="mela_email" value="{{ $mela_value->mela_email }}" required>
                             </div>
                           </div>
                     
@@ -159,8 +174,8 @@
 
                           <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input  class="btn btn-primary" required="required" type="submit" value="Update">
-                              <a class="btn btn-warning">Delete</a>
+                              <input  class="btn btn-primary" type="submit" name="submit" value="Update">
+                              <a href="{{ url('/mela_delete/'.$mela_value->mela_id) }}" class="btn btn-warning">Delete</a>
                             </div>
                           </div>
 
