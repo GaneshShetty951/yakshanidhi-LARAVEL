@@ -100,7 +100,7 @@ class MelaController extends Controller
  					'district'=>$request->input('mela_district'),
  					'PINCODE'=>$request->input('mela_pin') 					
  			]);
-         return redirect('/mela_update')->with('success','Mela Successfully Updated');
+         return back()->with('success','Mela Successfully Updated');
  	}
 
  	public function delete($id)

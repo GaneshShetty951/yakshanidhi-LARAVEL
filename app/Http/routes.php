@@ -33,7 +33,7 @@ Route::group(['middlewareGroups'=>['web']],function(){
 	Route::get('/mela_update','Admin\MelaController@showupdate');
 	Route::post('/mela_update','Admin\MelaController@update');
 
-	//Route::get('/search_mela','Admin\MelaController@showupdate');
+	Route::get('/search_mela','Admin\MelaController@showupdate');
 	Route::post('/search_mela','Admin\MelaController@insertupdate');
 	
 	Route::get('/mela_delete/{id}','Admin\MelaController@delete');
@@ -46,14 +46,37 @@ Route::group(['middlewareGroups'=>['web']],function(){
 	Route::get('/prasangha_update','Admin\PrasanghaController@showupdate');
 	Route::post('/prasangha_update','Admin\PrasanghaController@update');
 
-	//Route::get('/search_prasangha','Admin\PrasanghaController@showupdate');
+	Route::get('/search_prasangha','Admin\PrasanghaController@showupdate');
 	Route::post('/search_prasangha','Admin\PrasanghaController@insertupdate');
 
 	Route::get('/prasangha_delete/{id}','Admin\PrasanghaController@delete');
 	Route::get('/prasangha_list','Admin\PrasanghaController@show');
 
 	//******************** Routes for Show **************************//
-	Route::get('/show_add','ShowController@showadd');
+	Route::get('/show_add','Admin\ShowController@showadd');
+	Route::post('/show_add','Admin\ShowController@add');
+
+	Route::get('/show_update','Admin\ShowController@showupdate');
+	Route::post('/show_update','Admin\ShowController@update');
+
+	Route::get('/search_show','Admin\ShowController@showupdate');
+	Route::post('/search_show','Admin\ShowController@insertupdate');
+
+	Route::get('/show_delete','Admin\ShowController@delete');
+	Route::get('/show_list','Admin\ShowController@show');
+
+	//********************* Routes for Artist ********************************//
+	Route::get('/artist_add','Admin\ArtistController@showadd');
+	Route::post('/artist_add','Admin\ArtistController@add');
+
+	Route::get('/artist_update','Admin\ArtistController@showupdate');
+	Route::post('/artist_update','Admin\ArtistController@update');
+	
+	Route::get('/search_artist','Admin\ArtistController@showupdate');
+	Route::post('/search_artist','Admin\ArtistController@insertupdate');
+
+	Route::get('artist_delete','Admin\ArtistController@delete');
+	Route::get('/artist_list','Admin\ArtistController@show');
 
 	Route::get('/home', 'HomeController@index');
 });

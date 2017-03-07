@@ -51,7 +51,7 @@ class PrasanghaController extends Controller
 			'prasangha_author'=>$request->input('prasangha_author'),
 			'prasangha_year'=>$request->input('prasangha_year')
 			]);
-		return redirect('/prasangha_update')->with('success','Prasangha updated Successfully !');
+		return back()->with('success','Prasangha updated Successfully !');
 	}
 
 	public function delete($id)
