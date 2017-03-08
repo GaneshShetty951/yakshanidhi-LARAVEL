@@ -26,11 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return view('home');
+    }
+
+    public function admin()
+    {
         if(Auth::user()->hasRole('admin'))
         {
             $mela=Mela::all();
             return view('admin.mela_list',compact('mela'));
         }
-        return view('home');
     }
 }

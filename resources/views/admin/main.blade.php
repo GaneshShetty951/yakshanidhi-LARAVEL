@@ -30,7 +30,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="{{ url('/admin') }}" class="site_title"><i class="fa fa-paw"></i> <span>Yakshanidhi</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -94,7 +94,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-gear"></i> Permission <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{url('/roles')}}">Roles</a></li>
+                      <li><a href="{{ url('/roles') }}">Roles</a></li>
                       <!-- <li><a href="projects.html">permission</a></li>
                       <li><a href="project_detail.html">Project Detail</a></li>
                       <li><a href="contacts.html">Contacts</a></li>
@@ -137,16 +137,16 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              <a data-toggle="tooltip" data-placement="top" title="Settings" href="{{ url('/home') }}">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <!-- <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              </a> -->
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('/logout') }}">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -172,8 +172,6 @@
                     <li><a href="{{url('logout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
-
-                
               </ul>
             </nav>
           </div>
@@ -188,7 +186,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Yakshanidhi Official website by <a href="https://colorlib.com">Techcrab</a>
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -78,7 +78,14 @@ Route::group(['middlewareGroups'=>['web']],function(){
 	Route::get('artist_delete','Admin\ArtistController@delete');
 	Route::get('/artist_list','Admin\ArtistController@show');
 
+	Route::get('/roles','Admin\RoleController@showrole');
+	Route::post('/roles','Admin\RoleController@insertrole');
+
+	Route::post('/role_update','Admin\RoleController@makemanager');
+	Route::get('/role_delete/{user_id}','Admin\RoleController@delete');
+
 	Route::get('/home', 'HomeController@index');
+	Route::get('/admin','HomeController@admin');
 });
 
 
