@@ -86,6 +86,9 @@ Route::group(['middlewareGroups'=>['web']],function(){
 
 	Route::get('/home', 'HomeController@index');
 	Route::get('/admin','HomeController@admin');
+
+
+	
 });
 
 
