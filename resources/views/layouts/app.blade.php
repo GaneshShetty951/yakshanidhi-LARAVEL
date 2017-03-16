@@ -20,11 +20,13 @@
     <link rel="stylesheet" type="text/css"  href="spirits/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="spirits/fonts/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css"  href="frontend/css/style.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-social/css/bootstrap-social.css">
 
     <!-- Slider
     ================================================== -->
     <link href="spirits/css/owl.carousel.css" rel="stylesheet" media="screen">
     <link href="spirits/css/owl.theme.css" rel="stylesheet" media="screen">
+
 
 
     <!-- Stylesheet
@@ -45,6 +47,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="build/css/bootstrap-social.css">
 
     <script type="text/javascript" src="spirits/js/modernizr.custom.js"></script>
 
@@ -54,8 +57,11 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- <style type="text/css" href="css/style.css" rel="stylesheet"></style> -->
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    
 </head>
 <!-- <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">

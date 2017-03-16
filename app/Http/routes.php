@@ -91,5 +91,6 @@ Route::group(['middlewareGroups'=>['web']],function(){
 	
 });
 
-
+Route::get('/callback/{provider}', 'SocialAuthController@callback');
+Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
 
