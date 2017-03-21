@@ -14,6 +14,7 @@ class CreateYakshaganaTable extends Migration
     {
         Schema::create('melas',function(Blueprint $table){
             $table->increments('mela_id');
+            $table->integer('manager_id')->unsigned()->nullable();
             $table->string('mela_name')->unique();
             $table->String('mela_pic')->nullable();
             $table->string('mela_email')->nullable();
@@ -23,6 +24,12 @@ class CreateYakshaganaTable extends Migration
             $table->string('district');
             $table->string('PINCODE');
             $table->timestamps();
+
+            $table->foreign('manager_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
         });
         Schema::create('prasanghas',function(Blueprint $table){
             $table->increments('prasangha_id');

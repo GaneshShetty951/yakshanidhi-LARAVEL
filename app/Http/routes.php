@@ -14,6 +14,15 @@
 Route::get('/', function () {
 	return view('welcome');
 });
+
+
+
+
+Route::auth();
+
+Route::post('/api/ajaxAuthenticate','Auth\AuthController@ajaxAuthenticate');
+Route::post('/api/ajaxRegister', 'Auth\AuthController@ajaxRegister');
+
 Route::group(array('prefix' => 'api/v1/'), function()
 {
 	Route::resource('mela/', 'Api\MelaController@show');
@@ -22,7 +31,6 @@ Route::group(array('prefix' => 'api/v1/'), function()
 	Route::resource('prasangha/','Api\PrasanghaController@show');
 });
 
-Route::auth();
 
 Route::group(['middlewareGroups'=>['web']],function(){
 

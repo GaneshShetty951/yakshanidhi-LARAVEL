@@ -121,12 +121,42 @@
                     </div>
                   </div>
 
+                  @if(\App\User::find($value->id)->hasRole('user') and \App\User::find($value->id)->hasRole('manager')==false )
+                  <div class="form-group" >
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mela Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="mela_name" name="mela_name" list="melas" required="required" active class="form-control col-md-7 col-xs-12"  >
+                      <datalist id="melas">
+                        @foreach($melas as $value1)
+                          <option value="{{ $value1 }}"></option>
+                        @endforeach
+                      </datalist>
+                    </div>
+                  </div>
+                  @endif
+
+                  @if(\App\User::find($value->id)->hasRole('manager'))
+                  <div class="form-group" >
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mela Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" id="mela_name" name="mela_name" list="melas" required="required" disabled class="form-control col-md-7 col-xs-12"  value="{{App\Mela::where('manager_id','=',$value->id)->pluck('mela_name')[0] }}">
+                      <datalist id="melas">
+                        @foreach($melas as $value1)
+                          <option value="{{ $value1 }}"></option>
+                        @endforeach
+                      </datalist>
+                    </div>
+                  </div>
+                  @endif
+
                   <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      @if(DB::table('role_user')->where('user_id','=',$value->id)->get()==null)
+                      @if(\App\User::find($value->id)->hasRole('user') and \App\User::find($value->id)->hasRole('manager')==false and \App\User::find($value->id)->hasRole('admin')==false)
                       <input  class="btn btn-primary" type="submit" name="submit" value="Make manager">
                       @endif
-                      @if(DB::table('role_user')->where('user_id','=',$value->id)->get()!=null)
+                      @if(\App\User::find($value->id)->hasRole('manager'))
                       <a href="{{ url('/role_delete/'.$value->id) }}" class="btn btn-warning">Delete Manager</a>
                       @endif
                     </div>

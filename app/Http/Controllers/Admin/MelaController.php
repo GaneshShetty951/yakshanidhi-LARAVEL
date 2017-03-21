@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Mela;
+use App\User;
+use App\Role;
 use Auth;
+use DB;
 use Carbon\Carbon;
 use Session;
 use App\Http\Requests;
@@ -16,7 +19,9 @@ class MelaController extends Controller
  	{
  		if($this->validate_users())
  		{
- 			return view('admin.mela_add');
+            $u_id=array_unique(Mela::pluck('manager_id')->toArray());
+            $users=User::whereNotIn('id',$u_id)->pluck('email');
+ 			return view('admin.mela_add',compact('users'));
  		}
  	 	else
  	 	{
@@ -37,7 +42,7 @@ class MelaController extends Controller
  				'mela_pin'=>'required|min:6|max:6'
  			]);
  		$mela=new Mela();
-
+        $mela->manager_id=User::where('email','=',$request->input('man_email'))->pluck('id')[0];
         $mela->mela_name = $request->input('mela_name');
         $mela->mela_email=$request->input('mela_email');
         $mela->contact=$request->input('mela_contact');
@@ -58,6 +63,7 @@ class MelaController extends Controller
             $file->move(public_path().'/mela_images/', $name);
         }
      	 $mela->save();
+         DB::table('role_user')->insert(['role_id'=>Role::where('name','=','manager')->pluck('id')[0],'user_id'=>User::where('email','=',$request->input('man_email'))->pluck('id')[0]]);
      	 //Session::flash('success','Mela Successfully Added');
          return back()->with('success','Mela Successfully Added');
  	}

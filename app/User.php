@@ -15,6 +15,13 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+     public static $rules = [
+        'name'=>'required|alpha|min:2',
+        'email'=>'required|email|unique:users',
+        'password'=>'required|alpha_num|between:6,12|confirmed',
+        'password_confirmation'=>'required|alpha_num|between:6,12'
+        ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

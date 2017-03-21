@@ -7,6 +7,9 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -52,7 +55,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-        ]);
+            ]);
     }
 
     /**
@@ -67,6 +70,40 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            ]);
+    }
+
+
+    /**
+    * @param Request $request
+    * @return \Illuminate\Http\RedirectResponse
+    * @internal param Response $response
+    **/
+    protected function ajaxAuthenticate(Request $request)
+    {
+        If(Auth::attempt(['email'=>$request->input('email'),'password'=>$request->input('password')]))
+        {
+            //$urlIntended = $request->input('intendedUrl');
+            return response()->json(["resource"=>["result"=>"Logged in!"]],200);
+        }
+        return response()->json(["resource"=>["error"=>"Credentials do not match, any of our records !"]],404);
+    }
+
+
+     /**
+    * @param Request $request
+    * @return \Illuminate\Http\RedirectResponse
+    * @internal param Response $response
+    **/
+    protected function ajaxRegister(Request $request)
+    {  
+        // $validator = $this->validator(array($request->all()));
+        $validator = Validator::make($request->all(), User::$rules);
+        if ($validator->passes()) {
+            //$this->throwValidationException($request, $validator);
+            User::create(['name'=>$request->input('name'),'email'=>$request->input('email'),'password'=>bcrypt($request->input('password'))]);
+            return response()->json(['message' => 'registration success'],200);
+        }
+        return response()->json(['message'=>'registration failure'],404);
     }
 }

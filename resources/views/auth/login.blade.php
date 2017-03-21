@@ -53,25 +53,25 @@
                         </div><br/>
 
                         <div>
-                            <a href="{{ url('redirect/facebook')}}">
-                                <button class="loginBtn loginBtn--facebook">
-                                    Login with Facebook
+                            
+                                <button class="loginBtn loginBtn--facebook"><a style="text-decoration: none;color: white;" href="{{ url('redirect/facebook')}}">
+                                    Login with Facebook </a>
                                 </button>
-                            </a>
+                           
 
                         </div>
 
                         <div>
-                            <a href="{{ url('redirect/google')}}" ><button class="loginBtn loginBtn--google">
-                              Login with Google
-                          </button></a>
+                        <button class="loginBtn loginBtn--google"><a style="text-decoration: none;color: white;" href="{{ url('redirect/google')}}" >
+                              Login with Google</a>
+                          </button>
                       </div>
 
 
 
                   </form>
-                  
-                  
+
+
               </div>
           </div>
       </div>
