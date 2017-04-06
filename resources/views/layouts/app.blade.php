@@ -147,7 +147,7 @@
                             <li><a style="font-size: 12px;" href="{{ url('/admin') }}"><i class="fa pull-right fa-wrench"></i>Admin</a></li>
                         @endif
                         @if(Auth::user()->hasRole('manager'))
-                            <li><a style="font-size: 12px;" href="{{ url('/manage') }}"><i class="fa pull-right fa-wrench"></i>Manager</a></li>
+                            <li><a style="font-size: 12px;" href="{{ url('/admin') }}"><i class="fa pull-right fa-wrench"></i>Manager</a></li>
                         @endif
                         <li><a style="font-size: 12px;" href="{{ url('/logout') }}"><i class="fa pull-right fa-sign-out"></i>Logout</a></li>
                     </ul>

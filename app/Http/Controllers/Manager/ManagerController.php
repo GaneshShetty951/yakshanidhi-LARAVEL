@@ -1,33 +1,61 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Manager;
 
 use Illuminate\Http\Request;
-use App\Mela;
 use Auth;
-use App\Prasangha;
+use App\Mela;
 use App\Show;
+use App\Prasangha;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ShowController extends Controller
+class ManagerController extends Controller
 {
-   	public function showadd()
-   	{
-   		if($this->validate_users())
+ 	
+
+ 	public function man_show_add()
+ 	{
+ 		if (Auth::user()->hasRole('manager')) {
+            $id=Auth::user()->id;
+            $mela=Mela::where('manager_id','=',$id)->first();
+            $prasangha=Prasangha::pluck('prasangha_name');
+            return view('manager.man_show_add',compact('mela','prasangha'));
+        }else{
+        	return redirect('/home');
+        }	
+ 	}
+ 	public function man_show_update()
+ 	{
+ 		if(Auth::user()->hasRole('manager'))
    		{
-   			$mela=Mela::pluck('mela_name');
-   			$prasangha=Prasangha::pluck('prasangha_name');
-   			return View('admin.show_add',compact('mela','prasangha'));
+   			$show=null;
+   			$id=Auth::user()->id;
+            $mela=Mela::where('manager_id','=',$id)->first();
+   			return View('manager.man_show_update',compact('show','mela'));
    		}
    		else
    		{
-   			return('/home');
+   			return redirect('/home');
    		}
-   	}
-   	public function add(Request $request)
-   	{
-   		$this->validate($request,[
+ 	}
+ 	public function man_show_list()
+ 	{
+ 		if(Auth::user()->hasRole('manager'))
+   		{
+            $id=Auth::user()->id;
+            $mela=Mela::where('manager_id','=',$id)->first();
+   			$show=Show::where('mela_id','=',$mela->mela_id)->get();
+   			return View('manager.man_show_list',compact('show','mela'));
+   		}
+   		else
+   		{
+   			return redirect('/home');
+   		}
+ 	}
+ 	public function show_add_man(Request $request)
+ 	{
+ 		$this->validate($request,[
    				'mela_name'=>'required',
    				'prasangha_name'=>'required',
    				'show_producer_name'=>'required|max:50',
@@ -54,10 +82,35 @@ class ShowController extends Controller
    		$show->PINCODE = $request->input('show_pin');
    		$show->save();
    		return back()->with('success','Show Added Successfully');
-   	}
-   	public function update(Request $request)
-   	{
-   		if($this->validate_users())
+ 	}
+
+ 	public function man_search_show(Request $request)
+ 	{
+ 		if(Auth::user()->hasRole('manager'))
+ 		{
+ 			$prasanghas=Prasangha::pluck('prasangha_name');
+ 			$id=Auth::user()->id;
+            $mela=Mela::where('manager_id','=',$id)->first();
+   			$show=Show::where('mela_id','=',$mela->mela_id)->where('show_date','=',$request->input('search_key'))->get();
+        	if(count($show)<1)
+        	{
+        		return back()->with('errors_message', 'No records found !');
+        	}
+        	else
+        	{
+ 				return view('manager.man_show_update',compact('show','prasanghas','mela'));
+        	}
+ 		}
+ 	 	else
+ 	 	{
+ 	 		return redirect('/home');
+ 	 	}
+ 	}
+
+ 	public function man_show_update_add(Request $request)
+ 	{
+
+   		if(Auth::user()->hasRole('manager'))
    		{
    			$this->validate($request,[
    				'show_id'=>'required',
@@ -92,71 +145,10 @@ class ShowController extends Controller
    		{
    			return redirect('/home');
    		}
-   	}
-
-   	public function delete($id)
-   	{
-   		Show::where('show_id','=',$id)->delete();
- 		   return redirect('/show_list')->with('success','show Successfully Deleted');
-   	}
-
-
-   	public function showupdate()
-   	{
-   		if($this->validate_users())
-   		{
-   			$show=null;
-   			return View('admin.show_update',compact('show'));
-   		}
-   		else
-   		{
-   			return redirect('/home');
-   		}
-   	}
-
-   	public function insertupdate(Request $request)
-   	{
-   		if($this->validate_users())
- 		{
- 			$show=Show::where('show_date','=',$request->input('search_key'))->get();
- 			$prasanghas=Prasangha::pluck('prasangha_name');
- 			$melas=Mela::pluck('mela_name');
-        	if(count($show)<1)
-        	{
-        		return back()->with('errors_message', 'No records found !');
-        	}
-        	else
-        	{
- 				return view('admin.show_update',compact('show','prasanghas','melas'));
-        	}
- 		}
- 	 	else
- 	 	{
- 	 		return redirect('/home');
- 	 	}
-   	}
-
-   	public function show()
-   	{
-   		if($this->validate_users())
-   		{
-   			$show=Show::all();
-   			return View('admin.show_list',compact('show'));
-   		}
-   		else
-   		{
-   			return redirect('/home');
-   		}
-   	}
-   	
-   	private function validate_users(){
- 		if(Auth::user()->hasRole('admin'))
- 		{
- 			return true;
- 		}
- 		else
- 		{
- 			return false;
- 		}
  	}
-}
+ 	public function man_show_delete($id)
+ 	{
+ 		Show::where('show_id','=',$id)->delete();
+ 		return redirect('/man_show_list')->with('success','show Successfully Deleted');
+ 	}
+ }

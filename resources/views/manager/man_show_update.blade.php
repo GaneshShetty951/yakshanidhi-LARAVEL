@@ -1,8 +1,8 @@
-@extends('admin.main')
+@extends('manager.manager_main')
 
-@section('admin')
+@section('manager')
 <!-- <div class="right_col" role="main">
-  <div class="container">
+  <div class=ager_main
     <div class="page-title">
       <div class="title_left">
         <h3>Mela</h3>
@@ -81,7 +81,7 @@
 
             <div id="wizard" class="form_wizard wizard_horizontal x_title text-center">
               <div class="row">
-                <form method='post' action="{{ url('/search_show') }}">
+                <form method='post' action="{{ url('/man_search_show') }}">
                   {{csrf_field()}}
                   <input type="date" name="search_key" required placeholder="show date">
                   <input type="submit" name="submit" value="search">
@@ -96,7 +96,7 @@
             <div id="wizard" class="form_wizard wizard_horizontal x_title">
               <div id="step-1">
 
-                <form class="form-horizontal form-label-left"  method="post" enctype="multipart/form-data" action="{{ url('/show_update') }}" >
+                <form class="form-horizontal form-label-left"  method="post" enctype="multipart/form-data" action="{{ url('/man_show_update') }}" >
                   {{ csrf_field() }}
                   <div class="form-group" >
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Show Id<span class="required">*</span>
@@ -110,12 +110,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mela Name <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="mela_name" name="mela_name" list="melas" required="required" active class="form-control col-md-7 col-xs-12"  value="{{App\Mela::where('mela_id','=',$value->mela_id)->pluck('mela_name')[0] }}">
-                      <datalist id="melas">
-                        @foreach($melas as $value1)
-                          <option value="{{ $value1 }}"></option>
-                        @endforeach
-                      </datalist>
+                      <input type="text" id="mela_name" name="mela_name" list="melas" required="required"  readonly class="form-control col-md-7 col-xs-12"  value="{{ $mela->mela_name }}">
                     </div>
                   </div>
 
@@ -207,7 +202,7 @@
                   <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input  class="btn btn-primary" type="submit" name="submit" value="Update">
-                      <a href="{{ url('/show_delete/'.$value->show_id) }}" class="btn btn-warning">Delete</a>
+                      <a href="{{ url('/man_show_delete/'.$value->show_id) }}" class="btn btn-warning">Delete</a>
                     </div>
                   </div>
 

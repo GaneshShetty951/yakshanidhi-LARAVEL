@@ -22,6 +22,7 @@ Route::auth();
 
 Route::post('/api/ajaxAuthenticate','Auth\AuthController@ajaxAuthenticate');
 Route::post('/api/ajaxRegister', 'Auth\AuthController@ajaxRegister');
+Route::post('/api/socialLogin','Auth\AuthController@socialLogin');
 
 Route::group(array('prefix' => 'api/v1/'), function()
 {
@@ -95,7 +96,15 @@ Route::group(['middlewareGroups'=>['web']],function(){
 	Route::get('/home', 'HomeController@index');
 	Route::get('/admin','HomeController@admin');
 
-
+	Route::get('/manager','Manager\ManagerController@man_show_add');
+	Route::get('/man_show_add','Manager\ManagerController@man_show_add');
+	Route::get('/man_show_update','Manager\ManagerController@man_show_update');
+	Route::get('/man_show_list','Manager\ManagerController@man_show_list');
+	Route::post('/show_add_man','Manager\ManagerController@show_add_man');
+	Route::post('/man_search_show','Manager\ManagerController@man_search_show');
+	Route::get('/man_search_show','Manager\ManagerController@man_show_update');
+	Route::post('/man_show_update','Manager\ManagerController@man_show_update_add');
+	Route::get('/man_show_delete/{id}','Manager\ManagerController@man_show_delete');
 	
 });
 

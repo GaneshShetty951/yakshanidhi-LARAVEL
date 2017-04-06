@@ -40,8 +40,8 @@ return [
         'redirect' => 'http://127.0.0.1/callback/google',
     ],
     'facebook' => [
-        'client_id' => '1913059288926099',
-        'client_secret' => '48eb9e5abdd1cbe6e3985c5ff08cc129',
+        'client_id' => '1822624078003756',
+        'client_secret' => '4a6108dd566e712d74dc06b7334c7ffe',
         'redirect' => 'http://127.0.0.1/callback/facebook',
     ],
 

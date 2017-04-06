@@ -35,6 +35,8 @@ class HomeController extends Controller
         {
             $mela=Mela::all();
             return view('admin.mela_list',compact('mela'));
+        }elseif (Auth::user()->hasRole('manager')) {
+            return redirect('/manager');
         }
     }
 }

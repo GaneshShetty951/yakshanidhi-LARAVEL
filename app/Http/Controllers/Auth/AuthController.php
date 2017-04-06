@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use App\SocialAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -84,7 +85,7 @@ class AuthController extends Controller
         If(Auth::attempt(['email'=>$request->input('email'),'password'=>$request->input('password')]))
         {
             //$urlIntended = $request->input('intendedUrl');
-            return response()->json(["resource"=>["result"=>"Logged in!"]],200);
+            return response()->json(["resource"=>["result"=>"Logged in!","name"=>User::where('email','=',$request->input('email'))->pluck('name')[0]]],200);
         }
         return response()->json(["resource"=>["error"=>"Credentials do not match, any of our records !"]],404);
     }
@@ -105,5 +106,39 @@ class AuthController extends Controller
             return response()->json(['message' => 'registration success'],200);
         }
         return response()->json(['message'=>'registration failure'],404);
+    }
+
+    protected function socialLogin(Request $request)
+    {
+        $account = SocialAccount::whereProvider($request->input('provider'))
+            ->whereProviderUserId($request->input('id'))
+            ->first();
+
+        if ($account) {
+            return response()->json(['message' => 'Login success'],200);
+        } else {
+
+            $account = new SocialAccount([
+                'provider_user_id' => $request->input('id'),
+                'provider' => $request->input('provider')
+            ]);
+
+            $user = User::whereEmail($request->input('email'))->first();
+
+            if (!$user) {
+
+                $user = User::create([
+                    'email' => $request->input('email'),
+                    'name' => $request->input('name'),
+                ]);
+            }
+
+            $account->user()->associate($user);
+            $account->save();
+
+            return response()->json(['message' => 'registration success'],200);
+
+        }
+
     }
 }
