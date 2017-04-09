@@ -74,49 +74,71 @@ m
 
               </div>
           </div>
-      </div> -->
+        </div> -->
 
-      <form class="login-form" method="POST" role="form" action="{{ url('/login') }}">
-      {{ csrf_field() }}
-        <div class="row">
-          <div class="input-field col s12 center">
-            <img src="material/img/Logo.ico" alt="" class="responsive-img valign profile-image-login">
-            <p class="center login-form-text">Welcome to Yakshanidhi</p>
+        <form class="login-form" method="POST" role="form" action="{{ url('/login') }}">
+          {{ csrf_field() }}
+
+          <div class="row">
+            <div class="input-field col s12 center">
+              <img src="material/img/Logo.ico" alt="" class="responsive-img valign profile-image-login">
+              <p class="center login-form-text">Welcome to Yakshanidhi</p>
+            </div>
           </div>
-        </div>
-        <div class="row margin">
-          <div class="input-field col s12">
-            <i class="mdi-social-person-outline prefix"></i>
-            <input class="validate" id="email" name="email" type="email" placeholder="Email">
-            <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
+
+          <div class="row margin">
+            <div class="input-field col s12">
+              <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <i class="mdi-social-person-outline prefix"></i>
+                <input class="validate" id="email" name="email" type="email" placeholder="Email" required autofocus>
+                <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
+                @if ($errors->has('email'))
+                <span class="help-block">
+                  <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row margin">
-          <div class="input-field col s12">
-            <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password" type="password" name="password" placeholder="Password">
-            <label for="password"></label>
+
+
+          <div class="row margin">
+            <div class="input-field col s12">
+              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <i class="mdi-action-lock-outline prefix"></i>
+                <input id="password" type="password" name="password" placeholder="Password" required>
+                <label for="password"></label>
+                @if ($errors->has('password'))
+                <span class="help-block">
+                  <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row">          
-          <div class="input-field col s12 m12 l12  login-text">
-              <input type="checkbox" id="remember-me" />
+
+          <div class="row">          
+            <div class="input-field col s12 m12 l12  login-text">
+              <input type="checkbox" name="remember" id="remember-me" />
               <label for="remember-me">Remember me</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <button class="btn waves-effect waves-light col s12" type="submit" >Login</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6 m6 l6">
-            <p class="margin medium-small"><a href="{{ url('register')}}">Register Now</a></p>
-          </div>
-          <div class="input-field col s6 m6 l6">
-              <p class="margin right-align medium-small"><a href="{{ url('/password/reset') }}">Forgot password</a></p>
-          </div>          
-        </div>
 
-      </form>
-      @endsection
+          <div class="row">
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light col s12" type="submit" >Login</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s6 m6 l6">
+              <p class="margin medium-small"><a href="{{ url('register')}}">Register Now</a></p>
+            </div>
+            <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="{{ url('/password/reset') }}">Forgot password</a></p>
+            </div>          
+          </div>
+
+
+        </form>
+        @endsection

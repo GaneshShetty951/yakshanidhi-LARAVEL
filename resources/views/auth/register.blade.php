@@ -67,6 +67,7 @@
     <form class="login-form" method="POST" action="{{ url('/register') }}">
      {{ csrf_field() }}
         <div class="row">
+
           <div class="input-field col s12 center">
             <img src="material/img/Logo.ico" alt="" class="responsive-img valign profile-image-login">
             <p class="center login-form-text">Welcome to Yakshanidhi</p>
@@ -74,30 +75,58 @@
         </div>
         <div class="row margin">
           <div class="input-field col s12">
+          <div class="md-form {{ $errors->has('name') ? ' has-error' : '' }}">
             <i class="mdi-social-person-outline prefix"></i>
             <input id="username" type="text" class="validate" name="name" placeholder="User name" required>
             <label for="username" class="center-align"></label>
+             @if ($errors->has('name'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                @endif
+            </div>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
+          <div class="md-form {{ $errors->has('email') ? ' has-error' : '' }}">
             <i class="mdi-communication-email prefix"></i>
             <input id="email" type="email" class="validate" name="email" placeholder="Email" required>
             <label for="email" class="center-align"></label>
+          @if ($errors->has('email'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
+            </div>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
+          <div class="md-form {{ $errors->has('password') ? ' has-error' : '' }}">
             <i class="mdi-action-lock-outline prefix"></i>
             <input id="password" type="password" class="validate" name="password" placeholder="Password" required>
             <label for="password"></label>
+             @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
+            </div>
           </div>
         </div>
         <div class="row margin">
           <div class="input-field col s12">
+          <div class="md-form {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
             <i class="mdi-action-lock-outline prefix"></i>
             <input id="password-again" type="password" name="password_confirmation" placeholder="Confirm Password">
             <label for="password-again"></label>
+            @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
+            </div>
           </div>
         </div>
         <div class="row">
