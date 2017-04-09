@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('auth.auth_template')
 
 <!-- Main Content -->
 @section('content')
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -43,5 +43,36 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<form class="login-form" method="POST" action="{{ url('/password/email') }}">
+                        {{ csrf_field() }}
+        <div class="row">
+          <div class="input-field col s12 center">
+            <img src="\material/img/Logo.ico" alt="" class="responsive-img valign profile-image-login">
+            <p class="center login-form-text">Forgot Password</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input class="validate" id="email" type="email" name="email" placeholder="Email">
+            <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light col s12">Recover my Password</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="{{ url('/register')}}">Register Now!</a></p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+          <p class="margin right-align medium-small"><a href="{{ url('/login')}}">Login</a></p>
+          </div>          
+        </div>
+
+      </form>
 @endsection

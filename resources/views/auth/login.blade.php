@@ -2,7 +2,7 @@
 
         @section('content')
 
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
+       <!--  <div class="col-sm-6 col-md-4 col-md-offset-4">
             <h1 class="login-title text-center">Yakshanidhi</h1>
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
@@ -51,7 +51,7 @@
                         <div class="text-center">
                             <a class="btn btn-block btn-deep-purple" href="#">SIGN UP</a>
                         </div><br/>
-
+m
                         <div>
                             
                                 <button class="loginBtn loginBtn--facebook"><a style="text-decoration: none;color: white;" href="{{ url('redirect/facebook')}}">
@@ -74,5 +74,49 @@
 
               </div>
           </div>
-      </div>
+      </div> -->
+
+      <form class="login-form" method="POST" role="form" action="{{ url('/login') }}">
+      {{ csrf_field() }}
+        <div class="row">
+          <div class="input-field col s12 center">
+            <img src="material/img/Logo.ico" alt="" class="responsive-img valign profile-image-login">
+            <p class="center login-form-text">Welcome to Yakshanidhi</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input class="validate" id="email" name="email" type="email" placeholder="Email">
+            <label for="email" data-error="wrong" data-success="right" class="center-align"></label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input id="password" type="password" name="password" placeholder="Password">
+            <label for="password"></label>
+          </div>
+        </div>
+        <div class="row">          
+          <div class="input-field col s12 m12 l12  login-text">
+              <input type="checkbox" id="remember-me" />
+              <label for="remember-me">Remember me</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light col s12" type="submit" >Login</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="{{ url('register')}}">Register Now</a></p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="{{ url('/password/reset') }}">Forgot password</a></p>
+          </div>          
+        </div>
+
+      </form>
       @endsection
