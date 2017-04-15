@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/callback/{provider}', 'SocialAuthController@callback');
+Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+
 Route::get('/', ['middleware' =>'guest', function(){
   return view('auth.login');
 }]);
@@ -27,13 +30,25 @@ Route::post('/api/socialLogin','Auth\AuthController@socialLogin');
 Route::group(array('prefix' => 'api/v1/'), function()
 {
 	Route::resource('mela/', 'Api\MelaController@show');
-	Route::resource('/mela/{mela_name}/','Api\MelaController@index');
 	Route::resource('artist/', 'Api\ArtistController@show');
 	Route::resource('prasangha/','Api\PrasanghaController@show');
+	Route::resource('show/','Api\ShowController@show');
 });
+Route::get('/mela/bhagavataru','user\UserController@melaBhagvataru');
+Route::get('/mela/vesha','user\UserController@melaVeshadhari');
+Route::get('/mela/chande','user\UserController@melaChande');
+Route::get('/mela/maddale','user\UserController@melaMaddale');
 
+Route::get('/mela/{name}','user\UserController@melaList');
 
-Route::group(['middlewareGroups'=>['web']],function(){
+Route::get('/prasangha','user\UserController@showPrasangha');
+Route::get('/prasangha/{name}','user\UserController@showSinglePrasangha');
+
+Route::get('/{header}/{artist_name}','user\UserController@singleArtist');
+
+Route::get('/Todays_show','user\UserController@todayShow');
+
+Route::group(['middlewareGroups'=>['web','auth']],function(){
 
 	//************** Routes for Mela ************************//
 	Route::get('/mela_add','Admin\MelaController@showadd');
@@ -108,6 +123,5 @@ Route::group(['middlewareGroups'=>['web']],function(){
 	
 });
 
-Route::get('/callback/{provider}', 'SocialAuthController@callback');
-Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+
 

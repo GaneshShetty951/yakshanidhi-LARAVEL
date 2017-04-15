@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 
 class PrasanghaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
 	public function showadd()
 	{

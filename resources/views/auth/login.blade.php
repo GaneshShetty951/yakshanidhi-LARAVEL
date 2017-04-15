@@ -138,7 +138,18 @@ m
               <p class="margin right-align medium-small"><a href="{{ url('/password/reset') }}">Forgot password</a></p>
             </div>          
           </div>
-
+          <div class="row">
+            <div class="input-field col s6 m6 l6">
+              <a class="loginBtn loginBtn--facebook" href="{{ url('redirect/facebook')}}">
+                                    Login with Facebook </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6 m6 l6">
+              <a class="loginBtn loginBtn--facebook" href="{{ url('redirect/google')}}" >
+                              Login with Google</a>
+            </div>
+          </div>
 
         </form>
         @endsection

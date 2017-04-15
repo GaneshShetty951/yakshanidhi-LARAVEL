@@ -18,7 +18,6 @@ class SocialAuthController extends Controller
     {
         // Important change from previous post is that I'm now passing
         // whole driver, not only the user. So no more ->user() part
-
         $user = $service->createOrGetUser(Socialite::driver($provider)->user(),$provider);
         auth()->login($user);
 

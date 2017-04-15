@@ -10,10 +10,8 @@ use App\Http\Controllers\Controller;
 
 class PrasanghaController extends Controller
 {
-     public function show()
-     {
-    
-    	return response()->json(['posts'=>Prasangha::orderBy('prasangha_year','desc')->get()]);
-
-     }
+    public function show()
+    {
+   		return response()->json(['posts'=>Prasangha::orderBy('prasangha_year','desc')->get()]);
+    }
 }

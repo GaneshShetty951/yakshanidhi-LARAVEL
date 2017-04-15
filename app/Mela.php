@@ -8,8 +8,12 @@ class Mela extends Model
 {
 	protected $table="melas";
 	protected $fillable=['mela_name','mela_pic','mela_email','contact','village','taluk','district','PINCODE'];
-    public function artist()
+    public function Artist()
     {
-    	$this->hasMany('artist');
+    	$this->hasMany('App\Artist');
+    }
+    public function show()
+    {
+    	$this->hasMany('App\Show','mela_id','mela_id');
     }
 }

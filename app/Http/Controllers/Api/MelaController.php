@@ -13,9 +13,4 @@ class MelaController extends Controller
     {
    		return response()->json(['posts'=>Mela::all()]);
     }
-    public function index($mela_name)
-    {
-    	return response()->json(['posts'=>Mela::where('melas.mela_name','LIKE','%'.$mela_name.'%')->get()]);
-    	//return response()->json(['posts'=>Mela::where('melas.mela_name','LIKE','%Perduru%')->get()]);
-    }
 }

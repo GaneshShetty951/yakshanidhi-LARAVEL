@@ -26,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $mela=Mela::pluck('mela_name');
+        return view('home',compact('mela'));
     }
 
     public function admin()
@@ -37,6 +38,9 @@ class HomeController extends Controller
             return view('admin.mela_list',compact('mela'));
         }elseif (Auth::user()->hasRole('manager')) {
             return redirect('/manager');
+        }else{
+            $mela=Mela::pluck('mela_name');
+            return view('home',compact('mela'));
         }
     }
 }
