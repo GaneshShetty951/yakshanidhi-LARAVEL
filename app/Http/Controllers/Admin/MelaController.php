@@ -38,10 +38,10 @@ class MelaController extends Controller
  	public function add(Request $request)
  	{
  		$this->validate($request,[
- 				'mela_name'=>'required|max:50',
+ 				'mela_name'=>'required|max:50|unique:melas',
  				'mela_pic'=>'required|image|mimes:jpg,jpeg,png',
- 				'mela_email'=>'required',
- 				'mela_contact'=>'required|min:6|max:12',
+ 				'mela_email'=>'required|unique:melas',
+ 				'mela_contact'=>'required|min:6|max:12|unique:melas',
  				'mela_village'=>'required|max:50',
  				'mela_taluk'=>'required|max:50',
  				'mela_district'=>'required|max:50',

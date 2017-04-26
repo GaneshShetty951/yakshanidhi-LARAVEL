@@ -33,9 +33,9 @@
     ================================================== -->
     <link rel="stylesheet" type="text/css"  href="\spirits/css/style.css">
     <link rel="stylesheet" type="text/css" href="\spirits/css/responsive.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
         .flex-container {
             display: -webkit-flex;
@@ -47,7 +47,27 @@
             background-color: #000;
             color: #fff;
         }
-
+        table
+        {
+            table-layout: fixed;
+        }
+        tr
+        {
+            border: solid 1px;
+        }
+        .show
+        {
+            border: solid 0px;
+            padding: 0px;
+            margin: 0px;
+            font-size: 30px;
+        }
+        .mela_images
+        {
+            width: 200px;
+            position: absolute;
+            align-content: left;
+        }
         .flex-container > * {
             padding: 15px;
             -webkit-flex: 1 100%;
@@ -198,7 +218,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Yakshanidhi</a>
+                    <a class="navbar-brand" href="{{url('/home')}}">Yakshanidhi</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -227,7 +247,7 @@
                             <li><a style="font-size: 12px;" href="{{ url('/mela/maddale') }}#artist">Maddale</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ url('/Todays_show')}}" class="page-scroll">Todays Show</a></li>
+                    <li><a href="{{ url('/Todays_show')}}#show" class="page-scroll">Todays Show</a></li>
                     <li><a href="{{ url('/prasangha')}}#story" class="page-scroll">Prasangha</a></li>
 
                     @if (Auth::guest())

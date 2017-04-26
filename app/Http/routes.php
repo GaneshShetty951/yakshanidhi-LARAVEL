@@ -47,6 +47,8 @@ Route::get('/prasangha/{name}','user\UserController@showSinglePrasangha');
 Route::get('/{header}/{artist_name}','user\UserController@singleArtist');
 
 Route::get('/Todays_show','user\UserController@todayShow');
+Route::get('/show/{p_name}/{show_id}','user\UserController@oneShow');
+
 
 Route::group(['middlewareGroups'=>['web','auth']],function(){
 

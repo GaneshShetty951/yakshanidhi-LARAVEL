@@ -11,7 +11,11 @@ class ShowController extends Controller
 {
     public function show()
     {
-    	 return response()->json(['posts'=>DB::table('shows')->join('melas', 'shows.mela_id', '=', 'melas.mela_id')->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')->get()]);
+    	 return response()->json(['posts'=>DB::table('shows')
+            ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+            ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
+            ->get()]);
     }
    
 }

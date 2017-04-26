@@ -104,10 +104,34 @@ class UserController extends Controller
 
     public function todayShow()
     {
-    	$show = DB::table('shows')
+    	$mela=Mela::pluck('mela_name');
+    	// $show = DB::table('shows')
+     //        ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+     //        ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+     //        ->get();
+        $show=null;
+        $p_name= DB::table('shows')
             ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
             ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
+            ->select('prasangha_name','show_id')->get();
+    	return View('user.showforuser',compact('mela','show','p_name'));
+    }
+    public function oneShow($name,$id)
+    {
+        $mela=Mela::pluck('mela_name');
+        $show = DB::table('shows')
+            ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+            ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->select('shows.*','melas.mela_name','melas.mela_pic','prasanghas.prasangha_name')
+            ->where([['prasangha_name','=',$name],['show_id','=',$id]])
+            ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
             ->get();
-    	dd($show);
+        $p_name= DB::table('shows')
+            ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+            ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
+            ->select('prasangha_name','show_id')->get();
+        return View('user.showforuser',compact('mela','show','p_name'));
     }
 }
