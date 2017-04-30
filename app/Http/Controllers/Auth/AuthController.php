@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use App\Device;
 use App\SocialAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -140,5 +141,13 @@ class AuthController extends Controller
 
         }
 
+    }
+
+    public function saveDevice(Request $request)
+    {
+        $device=new Device();
+        $device->device_id=$request->input('device_id');
+        $device->save();
+        return response()->json(['message' => 'device registration success'],200);
     }
 }

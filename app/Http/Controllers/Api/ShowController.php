@@ -15,6 +15,7 @@ class ShowController extends Controller
             ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
             ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
             ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
+            ->select('shows.*','melas.mela_name','melas.mela_pic','prasanghas.prasangha_name')
             ->get()]);
     }
    

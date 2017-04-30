@@ -26,7 +26,9 @@ Route::auth();
 Route::post('/api/ajaxAuthenticate','Auth\AuthController@ajaxAuthenticate');
 Route::post('/api/ajaxRegister', 'Auth\AuthController@ajaxRegister');
 Route::post('/api/socialLogin','Auth\AuthController@socialLogin');
+Route::post('/api/saveDevice','Auth\AuthController@saveDevice');
 
+Route::get('/sendNotification','NotificationController@sendNotification');
 Route::group(array('prefix' => 'api/v1/'), function()
 {
 	Route::resource('mela/', 'Api\MelaController@show');

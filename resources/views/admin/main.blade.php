@@ -101,6 +101,8 @@
                       <li><a href="profile.html">Profile</a></li> -->
                     </ul>
                   </li>
+                  <li><a href="{{url('/sendNotification')}}">send Notification</a>
+                  </li>
                   <!-- <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="page_403.html">403 Error</a></li>
