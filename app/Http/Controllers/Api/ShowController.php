@@ -18,5 +18,14 @@ class ShowController extends Controller
             ->select('shows.*','melas.mela_name','melas.mela_pic','prasanghas.prasangha_name')
             ->get()]);
     }
-   
+    public function getComments($pname,$sid)
+    {
+        return response()->json(['posts'=>DB::table('reviews')
+              ->join('users','users.id','=','reviews.user_id')
+              ->join('shows','shows.show_id','=','reviews.show_id')
+              ->select('reviews.*','users.name')
+              ->where('reviews.show_id','=',$sid)
+              ->orderBy('reviews.created_at')->paginate(5)]);
+    }
+
 }

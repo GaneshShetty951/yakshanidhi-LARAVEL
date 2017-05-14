@@ -16,6 +16,7 @@ class ManagerReviewTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('show_id')->unsigned();
+            $table->string('comment_text');
             $table->timestamp('created_at');
 
             $table->foreign('user_id')

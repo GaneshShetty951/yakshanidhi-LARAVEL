@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yakshnidhi</title>
+    <title>Yakshanidhi</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="Tech crab solutions.com">
-    
+
     <!-- Favicons
     ================================================== -->
     <link rel="shortcut icon" href="\spirits/img/favicon.ico" type="image/x-icon">
@@ -39,7 +39,7 @@
     <style type="text/css">
         .flex-container {
             display: -webkit-flex;
-            display: flex;  
+            display: flex;
             -webkit-flex-flow: row wrap;
             flex-flow: row wrap;
             text-align: center;
@@ -77,16 +77,19 @@
 
         .article {
             text-align: left;
+            margin-bottom: 200px;
+            background-color: #000;
         }
 
-        header {background: black;color:white;}
-        footer {background: #000000;color:white;}
+        header {background: black;color:white; }
+        footer {background: #000000;color:white;margin-top: 35%;}
         .nav-sidemenu {
             border: solid 1px;
             background:#000000;
             color: #fff;
+            margin-bottom: 10%;
         }
-        .item 
+        .item
         {
             background: #000;
             color: #fff;
@@ -98,10 +101,11 @@
             vertical-align:baseline;
             padding: 10px;
         }
-        table { 
+        table {
             vertical-align:baseline;
             border-spacing: 10px;
             border-collapse: separate;
+            margin-bottom: 10%;
         }
         .mela_image
         {
@@ -114,6 +118,32 @@
             border:solid 1px;
             object-fit: cover;
             align-self: right;
+        }
+        .comment_box{
+          width:100%;
+          height:10%;
+          bottom:0%;
+          padding:50px;
+          position:absolute;
+          background-color: #000;
+          opacity:1;
+        }
+        .single_comment{
+          border-top: solid 1px #FFF;
+          background-color: #000;
+          color: #FFF;
+        }
+        .comment_header
+        {
+          align-self: flex-end;
+          text-align: right;
+          width: 100%;
+        }
+        .comment_body
+        {
+            color:#FF8C00;
+            text-align: left;
+            width: 100%;
         }
         .nav-sidemenu ul {
             list-style-type: none;
@@ -155,7 +185,7 @@
 
     <!-- <style type="text/css" href="css/style.css" rel="stylesheet"></style> -->
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    
+
 </head>
 <body>
 
@@ -203,8 +233,8 @@
                     @endif
                 </ul> -->
                 <!-- </div> -->
-                <!-- </div> --> 
-                <!-- </nav> --> 
+                <!-- </div> -->
+                <!-- </nav> -->
 
 
 

@@ -17,6 +17,13 @@ Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
 Route::get('/', ['middleware' =>'guest', function(){
   return view('auth.login');
 }]);
+Route::get('/session/put',function(){
+	session(['test'=>'its working']);
+	dd(session('test'));
+});
+Route::get('/session/get',function(){
+	dd(session('test'));
+});
 
 
 
@@ -27,7 +34,7 @@ Route::post('/api/ajaxAuthenticate','Auth\AuthController@ajaxAuthenticate');
 Route::post('/api/ajaxRegister', 'Auth\AuthController@ajaxRegister');
 Route::post('/api/socialLogin','Auth\AuthController@socialLogin');
 Route::post('/api/saveDevice','Auth\AuthController@saveDevice');
-
+Route::get('/api/getComments/{pname}/{sid}','Api\ShowController@getComments');
 Route::get('/sendNotification','NotificationController@sendNotification');
 Route::group(array('prefix' => 'api/v1/'), function()
 {
@@ -36,20 +43,6 @@ Route::group(array('prefix' => 'api/v1/'), function()
 	Route::resource('prasangha/','Api\PrasanghaController@show');
 	Route::resource('show/','Api\ShowController@show');
 });
-Route::get('/mela/bhagavataru','user\UserController@melaBhagvataru');
-Route::get('/mela/vesha','user\UserController@melaVeshadhari');
-Route::get('/mela/chande','user\UserController@melaChande');
-Route::get('/mela/maddale','user\UserController@melaMaddale');
-
-Route::get('/mela/{name}','user\UserController@melaList');
-
-Route::get('/prasangha','user\UserController@showPrasangha');
-Route::get('/prasangha/{name}','user\UserController@showSinglePrasangha');
-
-Route::get('/{header}/{artist_name}','user\UserController@singleArtist');
-
-Route::get('/Todays_show','user\UserController@todayShow');
-Route::get('/show/{p_name}/{show_id}','user\UserController@oneShow');
 
 
 Route::group(['middlewareGroups'=>['web','auth']],function(){
@@ -63,10 +56,10 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
 
 	Route::get('/search_mela','Admin\MelaController@showupdate');
 	Route::post('/search_mela','Admin\MelaController@insertupdate');
-	
+
 	Route::get('/mela_delete/{id}','Admin\MelaController@delete');
 	Route::get('/mela_list','Admin\MelaController@show');
-	
+
 	//*************** Routes for Prasangha ***********************//
 	Route::get('/prasangha_add','Admin\PrasanghaController@showadd');
 	Route::post('prasangha_add','Admin\PrasanghaController@add');
@@ -96,13 +89,10 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
 	//********************* Routes for Artist ********************************//
 	Route::get('/artist_add','Admin\ArtistController@showadd');
 	Route::post('/artist_add','Admin\ArtistController@add');
-
 	Route::get('/artist_update','Admin\ArtistController@showupdate');
 	Route::post('/artist_update','Admin\ArtistController@update');
-	
 	Route::get('/search_artist','Admin\ArtistController@showupdate');
 	Route::post('/search_artist','Admin\ArtistController@insertupdate');
-
 	Route::get('artist_delete','Admin\ArtistController@delete');
 	Route::get('/artist_list','Admin\ArtistController@show');
 
@@ -124,8 +114,22 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
 	Route::get('/man_search_show','Manager\ManagerController@man_show_update');
 	Route::post('/man_show_update','Manager\ManagerController@man_show_update_add');
 	Route::get('/man_show_delete/{id}','Manager\ManagerController@man_show_delete');
-	
+
+  //Routes for the  user
+  Route::get('/mela/bhagavataru','user\UserController@melaBhagvataru');
+  Route::get('/mela/vesha','user\UserController@melaVeshadhari');
+  Route::get('/mela/chande','user\UserController@melaChande');
+  Route::get('/mela/maddale','user\UserController@melaMaddale');
+
+  Route::get('/mela/{name}','user\UserController@melaList');
+
+  Route::get('/prasangha','user\UserController@showPrasangha');
+  Route::get('/prasangha/{name}','user\UserController@showSinglePrasangha');
+
+  Route::get('/artist/{header}/{artist_name}','user\UserController@singleArtist');
+
+  Route::get('/Todays_show','user\UserController@todayShow');
+  Route::get('/show/{p_name}/{show_id}','user\UserController@oneShow');
+  Route::post('/comment','user\UserController@saveComment');
+
 });
-
-
-

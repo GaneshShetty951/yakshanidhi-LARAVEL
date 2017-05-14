@@ -7,6 +7,7 @@ use App\Mela;
 use App\Prasangha;
 use App\Artist;
 use App\Show;
+use App\Review;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -114,8 +115,9 @@ class UserController extends Controller
             ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
             ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
             ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
-            ->select('prasangha_name','show_id')->get();
-    	return View('user.showforuser',compact('mela','show','p_name'));
+            ->select('prasangha_name','show_id')->paginate(1);
+            $comments=null;
+    	return View('user.showforuser',compact('mela','show','p_name','comments'));
     }
     public function oneShow($name,$id)
     {
@@ -131,7 +133,23 @@ class UserController extends Controller
             ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
             ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
             ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
-            ->select('prasangha_name','show_id')->get();
-        return View('user.showforuser',compact('mela','show','p_name'));
+            ->select('prasangha_name','show_id')->paginate(1);
+        $comments=DB::table('reviews')
+              ->join('users','users.id','=','reviews.user_id')
+              ->join('shows','shows.show_id','=','reviews.show_id')
+              ->select('reviews.*','users.name')
+              ->where('reviews.show_id','=',$id)
+              ->orderBy('reviews.created_at')->paginate(5);
+        return View('user.showforuser',compact('mela','show','p_name','comments'));
+    }
+    public function saveComment(Request $request)
+    {
+      $this->validate($request,['comment'=>'required']);
+      $review=new Review();
+      $review->user_id=$request->input('user_id');
+      $review->show_id=$request->input('show_id');
+      $review->comment_text=$request->input('comment');
+      $review->save();
+      return back()->with('success','comment Successful');
     }
 }

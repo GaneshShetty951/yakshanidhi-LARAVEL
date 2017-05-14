@@ -9,7 +9,7 @@
 <nav class="nav-sidemenu">
 <ul>
   @foreach($artist as $actor)
-  <li class="item"><a href="/{{$heading}}/{{$actor}}#artist">{{$actor}}</a></li>
+  <li class="item"><a href="/artist/{{$heading}}/{{$actor}}#artist">{{$actor}}</a></li>
   @endforeach
 </ul>
 </nav>
