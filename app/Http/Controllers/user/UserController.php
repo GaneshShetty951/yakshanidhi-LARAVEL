@@ -139,7 +139,7 @@ class UserController extends Controller
               ->join('shows','shows.show_id','=','reviews.show_id')
               ->select('reviews.*','users.name')
               ->where('reviews.show_id','=',$id)
-              ->orderBy('reviews.created_at')->paginate(5);
+              ->orderBy('reviews.created_at','desc')->paginate(5);
         return View('user.showforuser',compact('mela','show','p_name','comments'));
     }
     public function saveComment(Request $request)
