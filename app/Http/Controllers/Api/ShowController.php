@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Review;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -27,5 +28,14 @@ class ShowController extends Controller
               ->where('reviews.show_id','=',$sid)
               ->orderBy('reviews.created_at')->paginate(5)]);
     }
-
+    public function saveComments(Request $request)
+    {
+        $this->validate($request,['comment'=>'required']);
+        $review=new Review();
+        $review->user_id=$request->input('user_id');
+        $review->show_id=$request->input('show_id');
+        $review->comment_text=$request->input('comment');
+        $review->save();
+        return response()->json(['message' => 'Comment saved'],200);
+    }
 }

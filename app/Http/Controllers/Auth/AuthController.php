@@ -86,7 +86,7 @@ class AuthController extends Controller
         If(Auth::attempt(['email'=>$request->input('email'),'password'=>$request->input('password')]))
         {
             //$urlIntended = $request->input('intendedUrl');
-            return response()->json(["resource"=>["result"=>"Logged in!","name"=>User::where('email','=',$request->input('email'))->pluck('name')[0]]],200);
+            return response()->json(["resource"=>["result"=>"Logged in!","id"=>Auth::user()->id,"name"=>Auth::user()->name,"email"=>Auth::user()->email]],200);
         }
         return response()->json(["resource"=>["error"=>"Credentials do not match, any of our records !"]],404);
     }
@@ -98,13 +98,14 @@ class AuthController extends Controller
     * @internal param Response $response
     **/
     protected function ajaxRegister(Request $request)
-    {  
+    {
         // $validator = $this->validator(array($request->all()));
         $validator = Validator::make($request->all(), User::$rules);
         if ($validator->passes()) {
             //$this->throwValidationException($request, $validator);
-            User::create(['name'=>$request->input('name'),'email'=>$request->input('email'),'password'=>bcrypt($request->input('password'))]);
-            return response()->json(['message' => 'registration success'],200);
+            $user=User::create(['name'=>$request->input('name'),'email'=>$request->input('email'),'password'=>bcrypt($request->input('password'))]);
+            auth()->login($user);
+            return response()->json(["resource"=>["result"=>"Logged in!","id"=>Auth::user()->id,"name"=>Auth::user()->name,"email"=>Auth::user()->email]],200);
         }
         return response()->json(['message'=>'registration failure'],404);
     }
@@ -116,7 +117,10 @@ class AuthController extends Controller
             ->first();
 
         if ($account) {
-            return response()->json(['message' => 'Login success'],200);
+          //  return response()->json(['message' => 'Login success'],200);
+            $user = User::whereEmail($request->input('email'))->first();
+            auth()->login($user);
+            return response()->json(["resource"=>["result"=>"Logged in!","id"=>Auth::user()->id,"name"=>Auth::user()->name,"email"=>Auth::user()->email]],200);
         } else {
 
             $account = new SocialAccount([
@@ -127,7 +131,6 @@ class AuthController extends Controller
             $user = User::whereEmail($request->input('email'))->first();
 
             if (!$user) {
-
                 $user = User::create([
                     'email' => $request->input('email'),
                     'name' => $request->input('name'),
@@ -136,9 +139,10 @@ class AuthController extends Controller
 
             $account->user()->associate($user);
             $account->save();
+            auth()->login($user);
 
-            return response()->json(['message' => 'registration success'],200);
-
+            //return response()->json(['message' => 'registration success'],200);
+            return response()->json(["resource"=>["result"=>"Logged in!","id"=>Auth::user()->id,"name"=>Auth::user()->name,"email"=>Auth::user()->email]],200);
         }
 
     }

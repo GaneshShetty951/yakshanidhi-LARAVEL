@@ -35,6 +35,7 @@ Route::post('/api/ajaxRegister', 'Auth\AuthController@ajaxRegister');
 Route::post('/api/socialLogin','Auth\AuthController@socialLogin');
 Route::post('/api/saveDevice','Auth\AuthController@saveDevice');
 Route::get('/api/getComments/{pname}/{sid}','Api\ShowController@getComments');
+Route::post('/api/saveComments','Api\ShowController@saveComments');
 Route::get('/sendNotification','NotificationController@sendNotification');
 Route::group(array('prefix' => 'api/v1/'), function()
 {
