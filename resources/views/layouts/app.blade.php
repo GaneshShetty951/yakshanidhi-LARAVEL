@@ -5,34 +5,35 @@
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yakshanidhi</title>
+    <link rel="shortcut icon" href="{{ URL::asset('material/img/Logo.ico')}}" >
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="Tech crab solutions.com">
 
     <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="\spirits/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('spirits/img/favicon.ico')}}" type="image/x-icon">
     <link rel="apple-touch-icon" href="\spirits/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="\spirits/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="\spirits/img/apple-touch-icon-114x114.png">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="\spirits/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="\spirits/fonts/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css"  href="\frontend/css/style.css">
-    <link rel="stylesheet" type="text/css" href="\bootstrap-social/css/bootstrap-social.css">
+    <link rel="stylesheet" type="text/css"  href="{{ URL::asset('spirits/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('spirits/fonts/font-awesome/css/font-awesome.css')}}">
+    <link rel="stylesheet" type="text/css"  href="{{ URL::asset('frontend/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('bootstrap-social/css/bootstrap-social.css')}}">
 
     <!-- Slider
     ================================================== -->
-    <link href="\spirits/css/owl.carousel.css" rel="stylesheet" media="screen">
-    <link href="\spirits/css/owl.theme.css" rel="stylesheet" media="screen">
+    <link href="{{ URL::asset('spirits/css/owl.carousel.css')}}" rel="stylesheet" media="screen">
+    <link href="{{ URL::asset('spirits/css/owl.theme.css')}}" rel="stylesheet" media="screen">
 
 
 
     <!-- Stylesheet
     ================================================== -->
-    <link rel="stylesheet" type="text/css"  href="\spirits/css/style.css">
-    <link rel="stylesheet" type="text/css" href="\spirits/css/responsive.css">
+    <link rel="stylesheet" type="text/css"  href="{{ URL::asset('spirits/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('spirits/css/responsive.css')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -165,15 +166,15 @@
     <!-- ================================= -->
     <!-- <link rel="stylesheet" type="text/css" href="material/css/bootstrap.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="material/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="\material/css/mdb.css">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('material/css/mdb.css')}}">
     <!-- <link rel="stylesheet" type="text/css" href="material/css/mdb.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="\material/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('material/css/style.css')}}">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="\build/css/bootstrap-social.css">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('build/css/bootstrap-social.css')}}">
 
-    <script type="text/javascript" src="\spirits/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('spirits/js/modernizr.custom.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -321,17 +322,17 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <script type="text/javascript" src="\spirits/js/jquery.1.11.1.js"></script>
+        <script type="text/javascript" src="{{ URL::asset('spirits/js/jquery.1.11.1.js')}}"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script type="text/javascript" src="\spirits/js/bootstrap.js"></script>
-        <script type="text/javascript" src="\spirits/js/SmoothScroll.js"></script>
-        <script type="text/javascript" src="\spirits/js/jquery.isotope.js"></script>
+        <script type="text/javascript" src="{{ URL::asset('spirits/js/bootstrap.js')}}"></script>
+        <script type="text/javascript" src="{{ URL::asset('spirits/js/SmoothScroll.js')}}"></script>
+        <script type="text/javascript" src="{{ URL::asset('spirits/js/jquery.isotope.js')}}"></script>
 
-        <script src="\spirits/js/owl.carousel.js"></script>
+        <script src="{{ URL::asset('spirits/js/owl.carousel.js')}}"></script>
 
     <!-- Javascripts
     ================================================== -->
-    <script type="text/javascript" src="\spirits/js/main.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('spirits/js/main.js')}}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

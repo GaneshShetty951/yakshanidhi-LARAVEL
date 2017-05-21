@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Mail;
 use Validator;
 use App\Device;
 use App\SocialAccount;
@@ -68,11 +69,17 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             ]);
+        Mail::send('emails.welcome', ['data'=>$data], function ($message) use($data) {
+            $message->from('support@yakshanidhi.com', 'Yakshanidhi');
+
+            $message->to($data['email'])->bcc(['prasadmayya82@gmail.com','gpstrail2017@gmail.com'])->subject('Welcome to Yakshanidhi');
+        });
+        return $user;
     }
 
 
@@ -105,6 +112,12 @@ class AuthController extends Controller
             //$this->throwValidationException($request, $validator);
             $user=User::create(['name'=>$request->input('name'),'email'=>$request->input('email'),'password'=>bcrypt($request->input('password'))]);
             auth()->login($user);
+            $data=$user;
+                Mail::send('emails.welcome', ['data'=>$data], function ($message) use($data) {
+            $message->from('support@yakshanidhi.com', 'Yakshanidhi');
+
+            $message->to($data['email'])->bcc(['prasadmayya82@gmail.com','gpstrail2017@gmail.com'])->subject('Welcome to Yakshanidhi');
+            });
             return response()->json(["resource"=>["result"=>"Logged in!","id"=>Auth::user()->id,"name"=>Auth::user()->name,"email"=>Auth::user()->email]],200);
         }
         return response()->json(['message'=>'registration failure'],404);
@@ -135,8 +148,13 @@ class AuthController extends Controller
                     'email' => $request->input('email'),
                     'name' => $request->input('name'),
                 ]);
-            }
+                $data=$user;
+                Mail::send('emails.welcome', ['data'=>$data], function ($message) use($data) {
+            $message->from('support@yakshanidhi.com', 'Yakshanidhi');
 
+            $message->to($data['email'])->bcc(['prasadmayya82@gmail.com','gpstrail2017@gmail.com'])->subject('Welcome to Yakshanidhi');
+            });
+        }
             $account->user()->associate($user);
             $account->save();
             auth()->login($user);

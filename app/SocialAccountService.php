@@ -29,6 +29,12 @@ class SocialAccountService
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
                 ]);
+                $data=$user;
+                Mail::send('emails.welcome', ['data'=>$data], function ($message) use($data) {
+            $message->from('support@yakshanidhi.com', 'Yakshanidhi');
+
+            $message->to($data['email'])->bcc(['prasadmayya82@gmail.com','gpstrail2017@gmail.com'])->subject('Welcome to Yakshanidhi');
+        });
             }
 
             $account->user()->associate($user);

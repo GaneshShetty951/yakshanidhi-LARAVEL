@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Mail;
 use Illuminate\Http\Request;
 use App\SocialAccountService;
 use App\Http\Requests;
@@ -20,7 +20,7 @@ class SocialAuthController extends Controller
         // whole driver, not only the user. So no more ->user() part
         $user = $service->createOrGetUser(Socialite::driver($provider)->user(),$provider);
         auth()->login($user);
-
+               
         return redirect()->to('/home');
         //$user = $service->createOrGetUser(Socialite::driver($provider)->user());
         //dd($user);
