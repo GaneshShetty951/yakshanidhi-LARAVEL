@@ -30,7 +30,7 @@ class PrasanghaController extends Controller
 	public function add(Request $request)
 	{
 		$this->validate($request,[
-			'prasangha_name'=>'required|max:50',
+			'prasangha_name'=>'required|max:50|unique:prasanghas',
 			'prasangha_author'=>'required|max:50',
 			'prasangha_year'=>'required|min:4|max:4'
 			]);

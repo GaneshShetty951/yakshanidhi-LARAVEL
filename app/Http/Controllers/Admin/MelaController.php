@@ -72,8 +72,8 @@ class MelaController extends Controller
             $file->move(public_path().'/mela_images/', $name);
         }
      	 $mela->save();
-        if(User::where('email','=',$request->input('man_email'))->first()){
-         DB::table('role_user')->insert(['role_id'=>Role::where('name','=','manager')->first()->pluck('id'),'user_id'=>User::where('email','=',$request->input('man_email'))->first()->pluck('id')]);
+        if(User::where('email',$request->input('man_email'))->get()->first()){
+         DB::table('role_user')->insert(['role_id'=>Role::where('name','manager')->get()->first()->pluck('id')[0],'user_id'=>User::where('email','=',$request->input('man_email'))->first()->pluck('id')[0]]);
      }
      	 //Session::flash('success','Mela Successfully Added');
          return back()->with('success','Mela Successfully Added');
