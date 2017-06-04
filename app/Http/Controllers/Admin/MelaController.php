@@ -48,8 +48,8 @@ class MelaController extends Controller
  				'mela_pin'=>'required|min:6|max:6'
  			]);
  		$mela=new Mela();
-        if(User::where('email','=',$request->input('man_email'))->first()){
-        $mela->manager_id=User::where('email','=',$request->input('man_email'))->first()->pluck('id');
+        if(User::where('email',$request->input('man_email'))get()->first()){
+        $mela->manager_id=User::where('email','=',$request->input('man_email'))->get()->first()->pluck('id');
         }else{
              $mela->manager_id=null;
         }
@@ -73,7 +73,7 @@ class MelaController extends Controller
         }
      	 $mela->save();
         if(User::where('email',$request->input('man_email'))->get()->first()){
-         DB::table('role_user')->insert(['role_id'=>Role::where('name','manager')->get()->first()->pluck('id')[0],'user_id'=>User::where('email','=',$request->input('man_email'))->first()->pluck('id')[0]]);
+         DB::table('role_user')->insert(['role_id'=>Role::where('name','manager')->get()->first()->pluck('id')[0],'user_id'=>User::where('email',$request->input('man_email'))->get()->first()->pluck('id')[0]]);
      }
      	 //Session::flash('success','Mela Successfully Added');
          return back()->with('success','Mela Successfully Added');
