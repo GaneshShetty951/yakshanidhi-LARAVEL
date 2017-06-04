@@ -48,7 +48,7 @@ class MelaController extends Controller
  				'mela_pin'=>'required|min:6|max:6'
  			]);
  		$mela=new Mela();
-        if(User::where('email',$request->input('man_email'))get()->first()){
+        if(User::where('email',$request->input('man_email'))->get()->first()){
         $mela->manager_id=User::where('email','=',$request->input('man_email'))->get()->first()->pluck('id');
         }else{
              $mela->manager_id=null;

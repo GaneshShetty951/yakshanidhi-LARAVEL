@@ -17,6 +17,7 @@
   @foreach($artist as $actor)
   <li class="item"><a href="{{ url('/search/'.$actor.'/artist')}}#artist">{{$actor}}</a></li>
   @endforeach
+  <h6>{{ $artist->fragment('artist')}}</h6>
   @endif
 </ul>
 </nav>

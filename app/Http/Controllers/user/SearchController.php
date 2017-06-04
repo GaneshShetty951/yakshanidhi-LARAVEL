@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Mela;
 use App\Artist;
 use App\Show;
+use DB;
+use Session;
 use App\Prasangha;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -27,7 +29,8 @@ class SearchController extends Controller
     }
     public function insertSearchArtist(Request $request)
     {
-    	SearchController::$name=$request->input('name');
+        session_start();
+    	$_SESSION['KEYWORD']= $request->input('name');
     	$mela=Mela::pluck('mela_name');
     	$heading="Search result";
     	$artist=Artist::where('artist_first_name','LIKE','%'.$request->input('name').'%')->pluck('artist_first_name');
@@ -37,12 +40,11 @@ class SearchController extends Controller
     public function showSingleArtist($first_name)
     {
     	$mela=Mela::pluck('mela_name');
-    	dd(SearchController::$name);
+        session_start();
     	$heading="Search result";
-    	$artist=Artist::where('artist_first_name','LIKE','%'.SearchController::$name.'%')->pluck('artist_first_name');
-    	dd($artist);
+    	$artist=Artist::where('artist_first_name','LIKE','%'.$_SESSION['KEYWORD'].'%')->pluck('artist_first_name');
     	$single_artist=Artist::where('artist_first_name','=',$first_name)->get();
-    	// View('user.searchartist',compact('mela','heading','artist','single_artist'));
+    	return View('user.searchartist',compact('mela','heading','artist','single_artist'));
     }
     public function showPrasanghaSearch()
     {
@@ -54,7 +56,8 @@ class SearchController extends Controller
     }
    	public function insertSearchPrasangha(Request $request)
    	{
-   		SearchController::$name=$request->input('name');
+   		session_start();
+        $_SESSION['KEYWORD']= $request->input('name');
    		$mela=Mela::pluck('mela_name');
     	$prasangha=Prasangha::select('prasangha_name')
     		->where('prasangha_name','LIKE','%'.$request->input('name').'%')
@@ -65,12 +68,90 @@ class SearchController extends Controller
    	}
    	public function showSinglePrasangha($pname)
    	{
+        session_start();
    		$mela=Mela::pluck('mela_name');
     	$prasangha=Prasangha::select('prasangha_name')
-    		->where('prasangha_name','LIKE','%'.SearchController::$name.'%')
-    		->paginate(10);
+    		->where('prasangha_name','LIKE','%'.$_SESSION['KEYWORD'].'%')
+    		->paginate(10); 
     	$name="Prasangha";
     	$singleprasangha=Prasangha::where('prasangha_name','=',$pname)->get();
     	return View('user.searchprasangha',compact('mela','prasangha','singleprasangha','name'));
    	}
+
+    public function showMelaSearch()
+    {
+        $mela=Mela::pluck('mela_name');
+        $mela1=null;
+        $name="Prasangha";
+        $singlemela=null;
+        return View('user.searchmela',compact('mela','mela1','singlemela','name'));
+    }
+    public function insertSearchMela(Request $request)
+    {
+        session_start();
+        $_SESSION['KEYWORD']= $request->input('name');
+        $mela=Mela::pluck('mela_name');
+        $mela1=Mela::select('mela_name')
+                ->where('mela_name','LIKE','%'.$request->input('name').'%')
+                ->paginate(10);
+        $name="Prasangha";
+        $singlemela=null;
+        return View('user.searchmela',compact('mela','mela1','singlemela','name'));
+    }
+
+    public function showSingleMela($pname)
+    {
+        session_start();
+        $mela=Mela::pluck('mela_name');
+        $mela1=Mela::select('mela_name')
+                ->where('mela_name','LIKE','%'.$_SESSION['KEYWORD'].'%')
+                ->paginate(10);
+        $name="Prasangha";
+        $singlemela=Mela::where('mela_name','=',$pname)->get();
+        return View('user.searchmela',compact('mela','mela1','singlemela','name'));
+    }
+    public function showSearch()
+    {
+        $mela=Mela::pluck('mela_name');
+        $p_name=null;
+        $name="Prasangha";
+        $show=null;
+        $comments=null;
+        return View('user.searchshow',compact('mela','p_name','show','name','comments'));
+    }
+    public function insertSearchShow(Request $request)
+    {
+        session_start();
+        $mela=Mela::pluck('mela_name');
+        $_SESSION['KEYWORD']= $request->input('name');
+        $p_name= DB::table('shows')
+            ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+            ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->whereDate('show_date','=',$request->input('name'))
+            ->select('prasangha_name','show_id')->paginate(10);
+        $name="Prasangha";
+        $show=null;
+        $comments=null;
+        return View('user.searchshow',compact('mela','p_name','show','name','comments'));
+    }
+    public function showSingleShow($p_name,$id)
+    {
+        session_start();
+        $mela=Mela::pluck('mela_name');
+        $p_name= DB::table('shows')
+            ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+            ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->whereDate('show_date','=',$_SESSION['KEYWORD'])
+            ->select('prasangha_name','show_id')->paginate(10);
+        $name="Prasangha";
+        $show=DB::table('shows')
+            ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+            ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->select('shows.*','melas.mela_name','melas.mela_pic','prasanghas.prasangha_name')
+            ->where('show_id','=',$id)
+            ->get();
+        $comments=null;
+        return View('user.searchshow',compact('mela','p_name','show','name','comments'));
+    }
+
 }

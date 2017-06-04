@@ -56,6 +56,14 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
   	Route::post('/search/prasangha','user\SearchController@insertSearchPrasangha');
   	Route::get('/search/{pname}/prasangha','user\SearchController@showSinglePrasangha');
 
+  	Route::get('/search/mela','user\SearchController@showMelaSearch');
+  	Route::post('/search/mela','user\SearchController@insertSearchMela');
+  	Route::get('/search/{name}/mela','user\SearchController@showSingleMela');
+
+  	Route::get('/search/show','user\SearchController@showSearch');
+  	Route::post('/search/show','user\SearchController@insertSearchShow');
+  	Route::get('/search/{p_name}/{id}/show','user\SearchController@showSingleShow');
+
 	//************** Routes for Mela ************************//
 	Route::get('/mela_add','Admin\MelaController@showadd');
 	Route::post('/mela_add','Admin\MelaController@add');

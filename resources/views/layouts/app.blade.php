@@ -302,8 +302,8 @@
                         <ul class="dropdown-menu dropdown-usermenu" role="menu">
                         <li><a style="font-size: 12px;" href="{{ url('/search/artist') }}#artist">ARTIST</a></li>
                             <li><a style="font-size: 12px;" href="{{ url('/search/prasangha') }}#story">PRASANGHA</a></li>
-                            <li><a style="font-size: 12px;" href="{{ url('/search/mela') }}#artist">MELA</a></li>
-                            <li><a style="font-size: 12px;" href="{{ url('/search/show') }}#artist">SHOW</a></li>
+                            <li><a style="font-size: 12px;" href="{{ url('/search/mela') }}#mela">MELA</a></li>
+                            <li><a style="font-size: 12px;" href="{{ url('/search/show') }}#show">SHOW</a></li>
                         </ul>
                     </li>
                     @if (Auth::guest())
