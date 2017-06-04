@@ -90,6 +90,12 @@
             color: #fff;
             margin-bottom: 10%;
         }
+        .nav-sidemenu1 {
+            border: solid 1px black;
+            background:#000000;
+            color: #fff;
+            margin-bottom: 10%;
+        }
         .item
         {
             background: #000;
@@ -154,9 +160,18 @@
             color: #fff;
             text-decoration: none;
         }
+        .nav-sidemenu1 ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+        .nav-sidemenu1 ul a {
+            color: #fff;
+            text-decoration: none;
+        }
 
         @media all and (min-width: 768px) {
             .nav-sidemenu {text-align:left;-webkit-flex: 1 auto;flex:1 auto;-webkit-order:1;order:1;}
+            .nav-sidemenu1 {text-align:left;-webkit-flex: 1 auto;flex:1 auto;-webkit-order:1;order:1;}
             .article {-webkit-flex:5 0px;flex:5 0px;-webkit-order:2;order:2;}
             footer {-webkit-order:3;order:3;}
         }
@@ -280,7 +295,17 @@
                     </li>
                     <li><a href="{{ url('/Todays_show')}}#show" class="page-scroll">Todays Show</a></li>
                     <li><a href="{{ url('/prasangha')}}#story" class="page-scroll">Prasangha</a></li>
-
+                    <li class="dropdown dropdown-toggle">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Search</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu" role="menu">
+                        <li><a style="font-size: 12px;" href="{{ url('/search/artist') }}#artist">ARTIST</a></li>
+                            <li><a style="font-size: 12px;" href="{{ url('/search/prasangha') }}#story">PRASANGHA</a></li>
+                            <li><a style="font-size: 12px;" href="{{ url('/search/mela') }}#artist">MELA</a></li>
+                            <li><a style="font-size: 12px;" href="{{ url('/search/show') }}#artist">SHOW</a></li>
+                        </ul>
+                    </li>
                     @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>

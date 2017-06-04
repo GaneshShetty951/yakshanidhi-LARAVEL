@@ -41,22 +41,25 @@ class MelaController extends Controller
  				'mela_name'=>'required|max:50|unique:melas',
  				'mela_pic'=>'required|image|mimes:jpg,jpeg,png',
  				'mela_email'=>'required|unique:melas',
- 				'mela_contact'=>'required|min:6|max:12|unique:melas',
+ 				'contact'=>'required|min:6|max:12|unique:melas',
  				'mela_village'=>'required|max:50',
  				'mela_taluk'=>'required|max:50',
  				'mela_district'=>'required|max:50',
  				'mela_pin'=>'required|min:6|max:6'
  			]);
  		$mela=new Mela();
-        $mela->manager_id=User::where('email','=',$request->input('man_email'))->pluck('id')[0];
+        if(User::where('email','=',$request->input('man_email'))->first()){
+        $mela->manager_id=User::where('email','=',$request->input('man_email'))->first()->pluck('id');
+        }else{
+             $mela->manager_id=null;
+        }
         $mela->mela_name = $request->input('mela_name');
-        $mela->mela_email=$request->input('mela_email');
-        $mela->contact=$request->input('mela_contact');
-        $mela->village=$request->input('mela_village');
-        $mela->taluk=$request->input('mela_taluk');
-        $mela->district=$request->input('mela_district');
-        $mela->PINCODE=$request->input('mela_pin');
-
+        $mela->mela_email = $request->input('mela_email');
+        $mela->contact = $request->input('contact');
+        $mela->village = $request->input('mela_village');
+        $mela->taluk = $request->input('mela_taluk');
+        $mela->district = $request->input('mela_district');
+        $mela->PINCODE = $request->input('mela_pin');
 		if($request->hasFile('mela_pic')) {
             $file = $request->file('mela_pic');
             //getting timestamp
@@ -69,7 +72,9 @@ class MelaController extends Controller
             $file->move(public_path().'/mela_images/', $name);
         }
      	 $mela->save();
-         DB::table('role_user')->insert(['role_id'=>Role::where('name','=','manager')->pluck('id')[0],'user_id'=>User::where('email','=',$request->input('man_email'))->pluck('id')[0]]);
+        if(User::where('email','=',$request->input('man_email'))->first()){
+         DB::table('role_user')->insert(['role_id'=>Role::where('name','=','manager')->first()->pluck('id'),'user_id'=>User::where('email','=',$request->input('man_email'))->first()->pluck('id')]);
+     }
      	 //Session::flash('success','Mela Successfully Added');
          return back()->with('success','Mela Successfully Added');
  	}

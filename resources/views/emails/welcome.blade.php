@@ -301,7 +301,7 @@ a {
 				<table class="main" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="alert alert-warning">
-							<img src="\material/img/Logo.ico">
+							<img src="{{ URL::asset('http://yakshanidhi.com/public/material/img/Logo.ico')}}" alt="" height="30">
 							Welcome to Yakshanidhi
 						</td>
 					</tr>

@@ -48,6 +48,14 @@ Route::group(array('prefix' => 'api/v1/'), function()
 
 Route::group(['middlewareGroups'=>['web','auth']],function(){
 
+	Route::get('/search/artist','user\SearchController@showArtistSearch');
+  	Route::post('/search/artist','user\SearchController@insertSearchArtist');
+  	Route::get('/search/{first_name}/artist','user\SearchController@showSingleArtist');
+
+  	Route::get('/search/prasangha','user\SearchController@showPrasanghaSearch');
+  	Route::post('/search/prasangha','user\SearchController@insertSearchPrasangha');
+  	Route::get('/search/{pname}/prasangha','user\SearchController@showSinglePrasangha');
+
 	//************** Routes for Mela ************************//
 	Route::get('/mela_add','Admin\MelaController@showadd');
 	Route::post('/mela_add','Admin\MelaController@add');
@@ -127,10 +135,11 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
   Route::get('/prasangha','user\UserController@showPrasangha');
   Route::get('/prasangha/{name}','user\UserController@showSinglePrasangha');
 
-  Route::get('/artist/{header}/{artist_name}','user\UserController@singleArtist');
+ // Route::get('/artist/{header}/{artist_name}','user\UserController@singleArtist');
 
   Route::get('/Todays_show','user\UserController@todayShow');
   Route::get('/show/{p_name}/{show_id}','user\UserController@oneShow');
   Route::post('/comment','user\UserController@saveComment');
+
 
 });

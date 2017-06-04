@@ -115,7 +115,7 @@ class UserController extends Controller
             ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
             ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
             ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
-            ->select('prasangha_name','show_id')->paginate(1);
+            ->select('prasangha_name','show_id')->paginate(10);
             $comments=null;
     	return View('user.showforuser',compact('mela','show','p_name','comments'));
     }
@@ -133,7 +133,7 @@ class UserController extends Controller
             ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
             ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
             ->whereDate('show_date','=',\Carbon\Carbon::now()->toDateString())
-            ->select('prasangha_name','show_id')->paginate(1);
+            ->select('prasangha_name','show_id')->paginate(10);
         $comments=DB::table('reviews')
               ->join('users','users.id','=','reviews.user_id')
               ->join('shows','shows.show_id','=','reviews.show_id')

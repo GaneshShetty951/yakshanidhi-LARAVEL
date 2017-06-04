@@ -12,7 +12,7 @@ class Mela extends Model
     {
     	$this->hasMany('App\Artist');
     }
-    public function show()
+    public function Show()
     {
     	$this->hasMany('App\Show','mela_id','mela_id');
     }
