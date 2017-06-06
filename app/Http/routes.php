@@ -50,18 +50,22 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
 
 	Route::get('/search/artist','user\SearchController@showArtistSearch');
   	Route::post('/search/artist','user\SearchController@insertSearchArtist');
+  	Route::get('/search/artist_result','user\SearchController@artistSearcResult');
   	Route::get('/search/{first_name}/artist','user\SearchController@showSingleArtist');
 
   	Route::get('/search/prasangha','user\SearchController@showPrasanghaSearch');
   	Route::post('/search/prasangha','user\SearchController@insertSearchPrasangha');
+  	Route::get('/search/prasangha_result','user\SearchController@prasanghaSearchResult');
   	Route::get('/search/{pname}/prasangha','user\SearchController@showSinglePrasangha');
 
   	Route::get('/search/mela','user\SearchController@showMelaSearch');
   	Route::post('/search/mela','user\SearchController@insertSearchMela');
+  	Route::get('/search/mela_result','user\SearchController@melaSearchResult');
   	Route::get('/search/{name}/mela','user\SearchController@showSingleMela');
 
   	Route::get('/search/show','user\SearchController@showSearch');
   	Route::post('/search/show','user\SearchController@insertSearchShow');
+  	Route::get('/search/show_result','user\SearchController@showSearchResult');
   	Route::get('/search/{p_name}/{id}/show','user\SearchController@showSingleShow');
 
 	//************** Routes for Mela ************************//
