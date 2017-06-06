@@ -40,7 +40,7 @@ class SearchController extends Controller
         $heading="Search result";
         $artist=Artist::select('artist_first_name')
                 ->where('artist_first_name','LIKE','%'.$_SESSION['KEYWORD'].'%')
-                ->simplePaginate(10);
+                ->paginate(10);
         $single_artist=null;
         return View('user.searchartist',compact('mela','heading','artist','single_artist'));
     }
