@@ -15,7 +15,7 @@
 <ul>
   @if($artist)
   @foreach($artist as $actor)
-  <li class="item"><a href="{{ url('/search/'.$actor.'/artist')}}#artist">{{$actor}}</a></li>
+  <li class="item"><a href="{{ url('/search/'.$actor->artist_first_name.'/artist')}}#artist">{{$actor->artist_first_name}}</a></li>
   @endforeach
   <h6>{{ $artist->fragment('artist')->links()}}</h6>
   @endif
