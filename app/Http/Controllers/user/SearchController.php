@@ -33,7 +33,7 @@ class SearchController extends Controller
     	$_SESSION['KEYWORD']= $request->input('name');
     	$mela=Mela::pluck('mela_name');
     	$heading="Search result";
-    	$artist=Artist::where('artist_first_name','LIKE','%'.$request->input('name').'%')->pluck('artist_first_name');
+    	$artist=Artist::where('artist_first_name','LIKE','%'.$request->input('name').'%')->pluck('artist_first_name')->paginate(10);
     	$single_artist=null;
     	return View('user.searchartist',compact('mela','heading','artist','single_artist'));
     }
@@ -42,7 +42,7 @@ class SearchController extends Controller
     	$mela=Mela::pluck('mela_name');
         session_start();
     	$heading="Search result";
-    	$artist=Artist::where('artist_first_name','LIKE','%'.$_SESSION['KEYWORD'].'%')->pluck('artist_first_name');
+    	$artist=Artist::where('artist_first_name','LIKE','%'.$_SESSION['KEYWORD'].'%')->pluck('artist_first_name')->paginate(10);
     	$single_artist=Artist::where('artist_first_name','=',$first_name)->get();
     	return View('user.searchartist',compact('mela','heading','artist','single_artist'));
     }
