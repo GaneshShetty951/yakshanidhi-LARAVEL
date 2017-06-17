@@ -17,4 +17,12 @@ class ArtistController extends Controller
             ->select('artists.*','melas.mela_name','melas.mela_pic')
             ->get()]);
     }
+    public function searchartist($name)
+    {
+    	return response()->json(["posts"=>DB::table('artists')
+            ->join('melas', 'artists.mela_id', '=', 'melas.mela_id')
+            ->select('artists.*','melas.mela_name','melas.mela_pic')
+            ->where('artist_first_name','LIKE','%'.$name.'%')
+            ->paginate(5)]);
+    }
 }

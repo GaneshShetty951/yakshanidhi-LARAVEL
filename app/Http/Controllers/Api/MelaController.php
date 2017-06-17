@@ -13,4 +13,8 @@ class MelaController extends Controller
     {
    		return response()->json(['posts'=>Mela::all()]);
     }
+    public function searchmela($name)
+    {
+    	return response()->json(['posts'=>Mela::Where('mela_name','LIKE','%'.$name.'%')->paginate(5)]);
+    }
 }

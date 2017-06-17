@@ -37,9 +37,14 @@ Route::post('/api/saveDevice','Auth\AuthController@saveDevice');
 Route::get('/api/getComments/{pname}/{sid}','Api\ShowController@getComments');
 Route::post('/api/saveComments','Api\ShowController@saveComments');
 Route::get('/sendNotification','NotificationController@sendNotification');
+
+Route::get('/api/artist/search/{aname}','Api\ArtistController@searchartist');
+Route::get('/api/mela/search/{mname}','Api\MelaController@searchmela');
+Route::get('/api/prasangha/search/{pname}','Api\PrasanghaController@searchprasangha');
+Route::get('/api/show/search/{date}','Api\ShowController@searchshow');
 Route::group(array('prefix' => 'api/v1/'), function()
 {
-	Route::resource('mela/', 'Api\MelaController@show');
+	Route::resource('mela/', 'Api\MelaController@show');	
 	Route::resource('artist/', 'Api\ArtistController@show');
 	Route::resource('prasangha/','Api\PrasanghaController@show');
 	Route::resource('show/','Api\ShowController@show');

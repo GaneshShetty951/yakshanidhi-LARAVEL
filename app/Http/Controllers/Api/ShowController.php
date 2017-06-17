@@ -38,4 +38,13 @@ class ShowController extends Controller
         $review->save();
         return response()->json(['message' => 'Comment saved'],200);
     }
+    public function searchshow($date)
+    {
+         return response()->json(['posts'=>DB::table('shows')
+            ->join('melas', 'shows.mela_id', '=', 'melas.mela_id')
+            ->join('prasanghas','shows.prasangha_id','=','prasanghas.prasangha_id')
+            ->whereDate('show_date','=',$date)
+            ->select('shows.*','melas.mela_name','melas.mela_pic','prasanghas.prasangha_name')
+            ->get()]);
+    }
 }

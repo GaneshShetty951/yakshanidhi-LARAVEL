@@ -14,4 +14,8 @@ class PrasanghaController extends Controller
     {
    		return response()->json(['posts'=>Prasangha::orderBy('prasangha_year','desc')->get()]);
     }
+    public function searchprasangha($name)
+    {
+   		return response()->json(['posts'=>Prasangha::where('prasangha_name','LIKE','%'.$name.'%')->orderBy('prasangha_year','desc')->paginate(5)]);
+    }
 }
