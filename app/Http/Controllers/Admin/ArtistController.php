@@ -68,6 +68,13 @@ class ArtistController extends Controller
    			redirect('/home');
    		}
    	}
+
+    public function delete($id)
+    {
+        Artist::where('artist_id','=',$id);
+       return redirect('/artist_list')->with('success','show Successfully Deleted');
+    }
+
    	public function showadd()
    	{
    		if($this->validate_users())

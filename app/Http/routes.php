@@ -109,7 +109,7 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
 	Route::get('/search_show','Admin\ShowController@showupdate');
 	Route::post('/search_show','Admin\ShowController@insertupdate');
 
-	Route::get('/show_delete','Admin\ShowController@delete');
+	Route::get('/show_delete/{id}','Admin\ShowController@delete');
 	Route::get('/show_list','Admin\ShowController@show');
 
 	//********************* Routes for Artist ********************************//
@@ -119,7 +119,7 @@ Route::group(['middlewareGroups'=>['web','auth']],function(){
 	Route::post('/artist_update','Admin\ArtistController@update');
 	Route::get('/search_artist','Admin\ArtistController@showupdate');
 	Route::post('/search_artist','Admin\ArtistController@insertupdate');
-	Route::get('artist_delete','Admin\ArtistController@delete');
+	Route::get('artist_delete/{id}','Admin\ArtistController@delete');
 	Route::get('/artist_list','Admin\ArtistController@show');
 
 	Route::get('/roles','Admin\RoleController@showrole');

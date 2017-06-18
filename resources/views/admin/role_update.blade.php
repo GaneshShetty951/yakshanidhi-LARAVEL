@@ -129,7 +129,7 @@
                       <input type="text" id="mela_name" name="mela_name" list="melas" required="required" active class="form-control col-md-7 col-xs-12"  >
                       <datalist id="melas">
                         @foreach($melas as $value1)
-                          <option value="{{ print_r($value1) }}"></option>
+                          <option value="{{ $value1 }}"></option>
                         @endforeach
                       </datalist>
                     </div>

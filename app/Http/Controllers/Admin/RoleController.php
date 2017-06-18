@@ -37,8 +37,8 @@ class RoleController extends Controller
     	if($this->validate_users())
     	{
     		$role=User::where('email','=',$request->input('email'))->get();
-            $melas=Mela::where('manager_id','=',1)->pluck('mela_name');
-        
+            $melas=Mela::where('manager_id','=',null)->pluck('mela_name');
+            dd($melas);
     		return View('admin.role_update',compact('role','melas'));
     	}
     	else
@@ -49,7 +49,7 @@ class RoleController extends Controller
     public function delete($user_id)
     {
     	DB::table('role_user')->where([['role_id','=',Role::where('name','=','manager')->pluck('id')[0]],['user_id','=',$user_id]])->delete();
-        Mela::where('manager_id','=',$user_id)->update(['manager_id'=>1]);
+        Mela::where('manager_id','=',$user_id)->update(['manager_id'=>null]);
     	return back()->with('success','User Degraded to normal user !');
     }
     public function makemanager(Request $request)
