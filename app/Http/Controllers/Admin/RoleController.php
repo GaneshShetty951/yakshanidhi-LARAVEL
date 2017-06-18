@@ -38,7 +38,6 @@ class RoleController extends Controller
     	{
     		$role=User::where('email','=',$request->input('email'))->get();
             $melas=Mela::where('manager_id','=',null)->pluck('mela_name');
-            dd($melas);
     		return View('admin.role_update',compact('role','melas'));
     	}
     	else
