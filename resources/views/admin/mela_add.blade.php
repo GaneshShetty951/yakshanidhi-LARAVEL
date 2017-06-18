@@ -93,7 +93,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="users">Manager Email<span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="text" id="man_email" list="users" name="man_email" required="required" active class="form-control col-md-7 col-xs-12">
+                      <input type="text" id="man_email" list="users" name="man_email" active class="form-control col-md-7 col-xs-12">
                       <datalist id="users">
                         @foreach($users as $value2)
                         <p>{{ $value2 }}</p>
